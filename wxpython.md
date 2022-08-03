@@ -1,1 +1,3 @@
 python -m pip install --force --pre -f https://wxpython.org/Phoenix/snapshot-builds wxPython
+
+https://www.codeprj.com/zh/blog/bc01f11.html
