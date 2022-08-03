@@ -27,3 +27,13 @@
 #### → ssh -p 29418 www.gerrit.qbictechnology.com
     if success, it would show below Info.
     ****    Welcome to Gerrit Code Review    ****
+
+
+### Exception
+#### → no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
+#### Added below to /etc/ssh/ssh_config
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    ServerAliveInterval 120
+    KexAlgorithms diffie-hellman-group1-sha1,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-           sha256,diffie-hellman-group14-sha1
