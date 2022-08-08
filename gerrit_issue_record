@@ -1,0 +1,11 @@
+merge conflict
+  1. git reset --hard origin/your target branch
+      Ex: git reset --hard origin/qbic_nxp_android11.0
+  2. git cherry-pick "which commit you wanna merge"
+      Ex: git cherry-pick 4e9506ad1baaa83a767c79f80306ed643103a3e8
+  3. git status > git add "your change"
+      Ex: git add .   (will add all files)
+  4. git push to gerrit server, which need indicater your branch like below "HEAD:refs/for/your branch"
+      Ex: git push ssh://mickey.wu@www.gerrit.qbictechnology.com:29418/device/qbic/app/QbicFactorryTest HEAD:refs/for/qbic_nxp_android11.0
+  5. go to gerrit server, "My" > "Changes" > status, to check if still "Merge Conflict"
+      if no, then you can adding verifiy the code +1 finished the code review
