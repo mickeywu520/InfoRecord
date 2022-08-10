@@ -1,0 +1,3 @@
+https://filmsbykris.com/scripts/MyNotes/colored/ADB%20Android%20Cellular%20Signal%20Strength-DHDu662b.html
+
+dumpsys telephony.registry | grep -i signalstrength
