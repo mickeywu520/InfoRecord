@@ -9,3 +9,13 @@ merge conflict
       Ex: git push ssh://mickey.wu@www.gerrit.qbictechnology.com:29418/device/qbic/app/QbicFactorryTest HEAD:refs/for/qbic_nxp_android11.0
   5. go to gerrit server, "My" > "Changes" > status, to check if still "Merge Conflict"
       if no, then you can adding verifiy the code +1 finished the code review
+
+
+
+sync code error
+
+manifests:
+mickey.wu@gerrit.qbictechnology.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+###
