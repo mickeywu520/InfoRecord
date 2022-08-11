@@ -6,3 +6,16 @@ https://blog.csdn.net/GentelmanTsao/article/details/103686308
 
 Android：全面&详细解析android 10 RSSI信号显示与刷新其三
 https://blog.csdn.net/GentelmanTsao/article/details/103804220
+
+
+RIL_RK_DATA_V10.0: onUnsolicited <<<<<<<<<<<<<<<<< ^HCSQ:"LTE",71,70,176,32
+Signal = LTE (maybe WDMA)
+RSSI = 56 (the first)
+RSSP = 47 (the second)
+SINR = 101 (the next)
+RSRQ = 18 (only for LTE).
+
+ex.:
+^HCSQ:"LTE",56,47,101,18
+^HCSQ:"WDMA",45,147,60
+^HCSQ:"LTE",58,39,99,32
