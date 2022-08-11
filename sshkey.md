@@ -37,3 +37,6 @@
     GSSAPIAuthentication yes
     ServerAliveInterval 120
 ####    KexAlgorithms diffie-hellman-group1-sha1,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
+
+### SSH 免除重複輸入金鑰密碼教學：SSH Agent 與 Forwarding
+        https://blog.gtwang.org/linux/using-ssh-agent-forwarding-to-avoid-being-asked-passphrase/
