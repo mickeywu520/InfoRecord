@@ -1,6 +1,8 @@
 RK3568-ANDROID11-4G-EC20
 https://blog.csdn.net/longmin96/article/details/122687865
 
-
 【RK356X Android11】开发之4G模块（广和通模块NL668）
 https://blog.csdn.net/weixin_44776678/article/details/123329844?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-10-123329844-null-null.pc_agg_new_rank&utm_term=android10%20%E6%BA%90%E7%A0%81%E4%BF%AE%E6%94%B94g%E4%BF%A1%E5%8F%B7%E6%98%BE%E7%A4%BA&spm=1000.2123.3001.4430
+
+Telephony 整体架构图
+https://lixiaogang03.github.io/2019/09/12/Android-RIL/
