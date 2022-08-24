@@ -1,0 +1,25 @@
+sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio
+python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2
+libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool rsync curl zstd
+
+
+mkdir ~/bin
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+
+export PATH=~/bin:$PATH
+
+git config --global user.name "Your Name"
+git config --global user.email "Your Email"
+git config --list
+
+
+mkdir imx-yocto-bsp
+cd imx-yocto-bsp
+repo init -u https://source.codeaurora.org/external/imx/imx-manifest -b imx-linux-kirkstone -m imx-5.15.32-2.0.0.xml
+repo sync
+
+
+DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b imx8mp_path
+
+bitbake imx-image-full
