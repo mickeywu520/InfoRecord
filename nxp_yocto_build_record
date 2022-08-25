@@ -23,3 +23,11 @@ repo sync
 DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b imx8mp_path
 
 bitbake imx-image-full
+
+=======================================
+
+Make thread
+PARALLEL_MAKE = "-j 16"
+
+Package download thread
+BB_NUMBER_THREADS = "20"
