@@ -22,6 +22,8 @@ repo sync
 
 DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b imx8mp_path
 
+DISTRO=fsl-imx-xwayland MACHINE=imx8mp-ddr4-evk source imx-setup-release.sh -b imx8mp_arbor
+
 bitbake imx-image-full
 
 =======================================
