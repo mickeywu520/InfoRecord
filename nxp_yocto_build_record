@@ -33,3 +33,13 @@ PARALLEL_MAKE = "-j 16"
 
 Package download thread
 BB_NUMBER_THREADS = "20"
+
+
+============= Error =============
+
+ERROR: Task (/home/buildserver/mickey_bsp/imx8mp_yocoto_5.15.32-2.0.0/sources/meta-imx/meta-ml/recipes-nnstreamer/nnshark/nnshark_2021.10.imx.bb:do_configure) failed with exit code '1'
+
+nnshark_2021.10.imx.bb add below flag
+
+do_configure[network] = "1"
+
