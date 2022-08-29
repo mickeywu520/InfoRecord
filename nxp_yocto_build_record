@@ -22,7 +22,7 @@ repo sync
 
 DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b imx8mp_path
 
-DISTRO=fsl-imx-xwayland MACHINE=imx8mp-ddr4-evk source imx-setup-release.sh -b imx8mp_arbor
+DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b imx8mp_arbor
 
 bitbake imx-image-full
 
@@ -43,3 +43,15 @@ nnshark_2021.10.imx.bb add below flag
 
 do_configure[network] = "1"
 
+
+===================================
+
+Download the uuu tool from 
+https://github.com/NXPmicro/mfgtools
+
+sudo ./uuu -b emmc_all imx-boot-imx8mp-ddr4-evk-sd.bin-flash_ddr4_evk imx-image-full-imx8mp-ddr4-evk.wic
+
+windows:
+command prompt or power shell by administrator.
+
+uuu -b emmc_all imx-boot-imx8mp-ddr4-evk-sd.bin-flash_ddr4_evk imx-image-full-imx8mp-ddr4-evk.wic
