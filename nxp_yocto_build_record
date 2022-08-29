@@ -32,6 +32,7 @@ Make thread
 PARALLEL_MAKE = "-j 16"
 
 Package download thread
+imx8mp_yocoto_5.15.32-2.0.0/sources/meta-freescale/conf/machine/imx8mp-lpddr4-evk.conf
 BB_NUMBER_THREADS = "20"
 
 
