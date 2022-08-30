@@ -19,3 +19,19 @@ java -jar gerrit*.war init --batch --dev -d $GERRIT_SITE
 ~/gerrit/etc/gerrit.config
 [auth]
    type = DEVELOPMENT_BECOME_ANY_ACCOUNT
+   
+   
+   
+   
+   
+ref:
+https://vocus.cc/article/60a48eecfd897800011a0bf0
+   
+   
+   
+   
+   
+   
+   
+   
+   
