@@ -26,6 +26,7 @@ java -jar gerrit*.war init --batch --dev -d $GERRIT_SITE
    
 ref:
 https://vocus.cc/article/60a48eecfd897800011a0bf0
+https://www.youtube.com/watch?v=9WMuwRkoM2s
    
    
    
