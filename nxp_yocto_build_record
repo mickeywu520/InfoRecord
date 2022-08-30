@@ -59,3 +59,11 @@ uuu -b emmc_all imx-boot-imx8mp-ddr4-evk-sd.bin-flash_ddr4_evk imx-image-full-im
 
 
 =================================== qt6 error ===================================
+sudo apt install -y gcc-10 g++-10 cpp-10
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+
+## for qt6
+sudo apt install -y gcc-8 g++-8
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 100 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
+
+
