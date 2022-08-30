@@ -56,3 +56,6 @@ windows:
 command prompt or power shell by administrator.
 
 uuu -b emmc_all imx-boot-imx8mp-ddr4-evk-sd.bin-flash_ddr4_evk imx-image-full-imx8mp-ddr4-evk.wic
+
+
+=================================== qt6 error ===================================
