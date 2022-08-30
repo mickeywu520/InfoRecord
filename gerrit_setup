@@ -1,1 +1,21 @@
 sudo apt-get install uuid uuid-dev zlib1g-dev zlib1g-dev lzop git curl u-boot-tools mtd-utils openjdk-8-jdk gdisk m4
+
+sudo apt-get install openjdk-11-jdk (gerrit 3.6.1)
+
+sudo apt-get install git-all
+
+mkdir ~/gerrit
+
+cd gerrit
+
+wget https://gerrit-releases.storage.googleapis.com/gerrit-3.5.1.war
+wget https://gerrit-releases.storage.googleapis.com/gerrit-3.6.1.war
+
+export GERRIT_SITE=~/gerrit
+
+java -jar gerrit*.war init --batch --dev -d $GERRIT_SITE
+
+
+~/gerrit/etc/gerrit.config
+[auth]
+   type = DEVELOPMENT_BECOME_ANY_ACCOUNT
