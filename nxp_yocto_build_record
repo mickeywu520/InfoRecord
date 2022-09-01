@@ -50,6 +50,9 @@ do_configure[network] = "1"
 Download the uuu tool from 
 https://github.com/NXPmicro/mfgtools
 
+unzip bz2
+7za e imx-image-full-imx8mp-lpddr4-evk.wic.bz2
+
 sudo ./uuu -b emmc_all imx-boot-imx8mp-ddr4-evk-sd.bin-flash_ddr4_evk imx-image-full-imx8mp-ddr4-evk.wic
 
 windows:
