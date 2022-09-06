@@ -94,4 +94,5 @@ bitbake -c compile u-boot-imx -f
 bitbake -c build u-boot-imx -f
 bitbake u-boot-imx
 
-
+=================================== DDR releated ===================================
+https://blog.51cto.com/qmiller/4641724
