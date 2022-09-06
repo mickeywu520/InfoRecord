@@ -87,3 +87,11 @@ After compile success, change file as below path
 
 =================================== DTS path ===================================
 /tmp/work/imx8mp_lpddr4_evk-poky-linux/u-boot-imx/2022.04-r0/git/arch/arm/dts/imx8mp-evk.dts
+
+
+=================================== Build uboot ===================================
+bitbake -c compile u-boot-imx -f
+bitbake -c build u-boot-imx -f
+bitbake u-boot-imx
+
+
