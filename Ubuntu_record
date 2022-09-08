@@ -1,0 +1,8 @@
+# Cross compile for aarch64 on x86_x64
+
+sudo apt install binutils-aarch64-linux-gnu
+sudo apt install gcc-aarch64-linux-gnu
+sudo apt install g++-aarch64-linux-gnu
+
+compile for aarch64
+aarch64-linux-gnu-gcc CCTalkPortTest.cpp CCTalkPortTest.h -o CCTalkPortTest.out
