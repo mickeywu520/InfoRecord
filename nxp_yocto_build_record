@@ -99,3 +99,8 @@ https://blog.51cto.com/qmiller/4641724
 
 ===> https://www.wpgdadatong.com/cn/blog/detail/44774
 https://www.wpgdadatong.com/tw/blog/detail/45470
+
+=================================== Compile imx-boot ===================================
+bitbake -f -c compile optee-os && bitbake -f -c deploy optee-os
+bitbake -f -c compile u-boot-imx && bitbake -f -c deploy u-boot-imx
+bitbake -f -c compile imx-boot && bitbake -f -c deploy imx-boot
