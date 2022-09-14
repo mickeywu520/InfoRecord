@@ -104,3 +104,8 @@ https://www.wpgdadatong.com/tw/blog/detail/45470
 bitbake -f -c compile optee-os && bitbake -f -c deploy optee-os
 bitbake -f -c compile u-boot-imx && bitbake -f -c deploy u-boot-imx
 bitbake -f -c compile imx-boot && bitbake -f -c deploy imx-boot
+
+=================================== make sd boot ===================================
+bzcat imx-image-core-imx8mp-lpddr4-evk.wic.bz2 | sudo dd of=/dev/sdb bs=1M conv=fsync
+
+
