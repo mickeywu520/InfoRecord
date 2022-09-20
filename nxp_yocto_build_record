@@ -108,3 +108,10 @@ bitbake -f -c compile imx-boot && bitbake -f -c deploy imx-boot
 =================================== make sd boot ===================================
 bzcat imx-image-core-imx8mp-lpddr4-evk.wic.bz2 | sudo dd of=/dev/sdb bs=1M conv=fsync
 cat imx-image-full-imx8mp-lpddr4-evk.wic | dd of=/dev/mmcblk2 bs=1M conv=fsync
+
+
+=================================== ksz9131 phy on imx8mplus ===================================
+https://community.nxp.com/t5/i-MX-Processors/Using-ksz9131-phy-on-imx8mplus-and-kernel-tag-lf-5-10-35-2-0-0/m-p/1342500
+https://community.nxp.com/t5/i-MX-Processors/KSZ9131RNX-Porting-to-i-MX8/m-p/986221
+
+
