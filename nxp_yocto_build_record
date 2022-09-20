@@ -114,4 +114,32 @@ cat imx-image-full-imx8mp-lpddr4-evk.wic | dd of=/dev/mmcblk2 bs=1M conv=fsync
 https://community.nxp.com/t5/i-MX-Processors/Using-ksz9131-phy-on-imx8mplus-and-kernel-tag-lf-5-10-35-2-0-0/m-p/1342500
 https://community.nxp.com/t5/i-MX-Processors/KSZ9131RNX-Porting-to-i-MX8/m-p/986221
 
-
+=================================== cat video card info ===================================
+cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/dpms
+==> On
+cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/enabled
+==> enabled
+cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/status
+==> connected
+cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/modes
+==> 1920x1080
+    1920x1080
+    1920x1080
+    1920x1080
+    1600x900
+    1280x1024
+    1280x1024
+    1152x864
+    1280x720
+    1280x720
+    1280x720
+    1280x720
+    800x600
+    720x576
+    720x480
+    720x480
+    720x480
+    720x480
+    640x480
+    640x480
+    640x480
