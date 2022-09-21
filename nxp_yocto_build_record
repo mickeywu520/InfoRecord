@@ -118,6 +118,8 @@ https://community.nxp.com/t5/i-MX-Processors/Using-ksz9131-phy-on-imx8mplus-and-
 https://community.nxp.com/t5/i-MX-Processors/KSZ9131RNX-Porting-to-i-MX8/m-p/986221
 
 =================================== cat video card info ===================================
+* Check h/w HPD PIN first
+
 cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/dpms
 ==> On
 cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/enabled
