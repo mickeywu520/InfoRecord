@@ -12,3 +12,6 @@
         -a：封裝備份模式，相當於 -rlptgoD，遞迴備份所有子目錄下的目錄與檔案，保留連結檔、檔案的擁有者、群組、權限以及時間戳記。
         -z：啟用壓縮。
         -h：將數字以比較容易閱讀的格式輸出。
+        
+# 如何在 Ubuntu 22.04 上安裝 XRDP
+### https://deskinsight.net/zh-hant/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-22-04-%E4%B8%8A%E5%AE%89%E8%A3%9D-xrdp
