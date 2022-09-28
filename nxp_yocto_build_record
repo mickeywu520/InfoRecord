@@ -154,3 +154,7 @@ cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/modes
     640x480
     640x480
     640x480
+
+=============== I.MX8M GPIO calc ===============
+https://blog.csdn.net/u014248033/article/details/107956182
+
