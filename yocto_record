@@ -1,0 +1,8 @@
+bitbake-layers show-layers
+mkdir source_arbor
+cd source_arbor
+bitbake-layers create-layer meta-arbor
+bitbake-layers add meta-arbor/
+bitbake-layers show-layers
+cd meta-arbor
+mkdir machine
