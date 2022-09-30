@@ -8,3 +8,4 @@ Jack server failed to (re)start, try 'jack-diagnose' or see Jack server log
 SSL error when connecting to the Jack server. Try 'jack-diagnose
 
 https://segmentfault.com/a/1190000039970343
+/prebuilts/sdk/tools/ 目录下执行./jack-admin kill-server && ./jack-admin start-server 成功。
