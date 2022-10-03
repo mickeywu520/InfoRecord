@@ -52,6 +52,13 @@ nnshark_2021.10.imx.bb add below flag
 
 do_configure[network] = "1"
 
+ex:
+do_configure[network] = "1"
+
+do_configure:prepend() {
+    sh autogen.sh --noconfigure
+}
+
 
 ===================================
 
