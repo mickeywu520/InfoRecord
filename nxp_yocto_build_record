@@ -38,6 +38,8 @@ DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b
 
 DISTRO=fsl-imx-xwayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b imx8mp_arbor
 
+bitbake imx-image-multimedia
+
 bitbake imx-image-full
 
 =======================================
