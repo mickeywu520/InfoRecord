@@ -139,6 +139,38 @@ cat imx-image-multimedia-imx8mp-lpddr4-evk-20221007015305.rootfs.wic | dd of=/de
 https://community.nxp.com/t5/i-MX-Processors/Using-ksz9131-phy-on-imx8mplus-and-kernel-tag-lf-5-10-35-2-0-0/m-p/1342500
 https://community.nxp.com/t5/i-MX-Processors/KSZ9131RNX-Porting-to-i-MX8/m-p/986221
 
+***** below config is working...
+/* mickey test eth phy */
+&fec {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_fec>;
+	phy-mode = "rgmii-id";
+	phy-handle = <&ethphy0>;
+
+	snps,reset-gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
+	/* snps,reset-active-low; */
+	snps,reset-delays-us = <0 10000 50000>;
+
+	status = "okay";
+
+	mdio {
+		compatible = "snps,dwmac-mdio";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		phy-reset-post-delay = <150>;
+		phy-reset-duration = <10>;
+		ethphy0: ethernet-phy@4 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <4>;
+			eee-broken-1000t;
+			rxc-dll-2ns = <1>;
+			txc-dll-2ns = <1>;
+		};
+	};
+};
+
+
 =================================== cat video card info ===================================
 * Check h/w HPD PIN first
 
