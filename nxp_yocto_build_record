@@ -133,6 +133,7 @@ sudo dd if=imx-boot-imx8mp-lpddr4-evk-sd.bin-flash_evk of=/dev/sdb bs=1k seek=33
 # for windows mingw64
 1. cat /proc/partitions
 2. cat imx-image-full-imx8mp-lpddr4-evk.wic | dd of=/dev/sdc bs=1M conv=fsync
+cat imx-image-multimedia-imx8mp-lpddr4-evk-20221007015305.rootfs.wic | dd of=/dev/sdc bs=1M status=progress conv=fsync
 
 =================================== ksz9131 phy on imx8mplus ===================================
 https://community.nxp.com/t5/i-MX-Processors/Using-ksz9131-phy-on-imx8mplus-and-kernel-tag-lf-5-10-35-2-0-0/m-p/1342500
