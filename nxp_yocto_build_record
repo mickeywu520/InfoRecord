@@ -71,6 +71,8 @@ do_configure:prepend() {
 
 http://huaqianlee.github.io/2021/12/25/Linux/How-to-prepare-SDK-for-Yocto-Linux-Ubuntu-on-Qualcomm/
 
+Ex: bbwarn "mickey, !!!!!!!!!!!!!!!!!!!!! =============== ${KERNEL_SRC}"
+
 bb.plain(msg): Writes msg as is to the log while also logging to stdout.
 bb.note(msg): Writes "NOTE: msg" to the log. Also logs to stdout if BitBake is called with "-v".
 bb.debug(level, msg): Writes "DEBUG: msg" to the log. Also logs to stdout if the log level is greater than or equal to level. See the "-D" option in the BitBake User Manual for more information.
