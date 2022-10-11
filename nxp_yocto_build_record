@@ -67,10 +67,18 @@ do_configure:prepend() {
     sh autogen.sh --noconfigure
 }
 
+=================================== bitbake print ===================================
 
-===================================
+http://huaqianlee.github.io/2021/12/25/Linux/How-to-prepare-SDK-for-Yocto-Linux-Ubuntu-on-Qualcomm/
 
-Download the uuu tool from 
+bb.plain(msg): Writes msg as is to the log while also logging to stdout.
+bb.note(msg): Writes "NOTE: msg" to the log. Also logs to stdout if BitBake is called with "-v".
+bb.debug(level, msg): Writes "DEBUG: msg" to the log. Also logs to stdout if the log level is greater than or equal to level. See the "-D" option in the BitBake User Manual for more information.
+bb.warn(msg): Writes "WARNING: msg" to the log while also logging to stdout.
+bb.error(msg): Writes "ERROR: msg" to the log while also logging to stdout.
+bb.fatal(msg): This logging function is similar to bb.error(msg) but also causes the calling task to fail.
+
+=================================== Download the uuu tool from ===================================
 https://github.com/NXPmicro/mfgtools
 
 unzip bz2
