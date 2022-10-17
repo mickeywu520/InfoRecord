@@ -221,5 +221,11 @@ https://blog.csdn.net/u014248033/article/details/107956182
 time curl -I https://www.google.com | grep HTTP
 
 
+=============== MX8M Changing PIN definition ===============
+https://community.nxp.com/t5/i-MX-Processors/Using-PinMux-tool-config-tools-for-I-Mx-How-integrate-pin-mux-c/m-p/1156666
+
+
+
+
 
 
