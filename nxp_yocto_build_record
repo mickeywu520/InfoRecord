@@ -227,4 +227,11 @@ https://community.nxp.com/t5/i-MX-Processors/Using-PinMux-tool-config-tools-for-
 =============== UART test ===============
 https://github.com/itas109/CSerialPort
 
+=============== CONFIG_GPIO_SYSFS ===============
+Due to linux kernel 5.5 above deprecated GPIO_SYSFS, so need to enable by menuconfig
+
+bitbake linux-imx -c menuconfig
+1. enable enbaded_system
+2. enable device driver > gpio support > GPIO SYSFS
+
 
