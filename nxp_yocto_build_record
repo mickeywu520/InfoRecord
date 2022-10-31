@@ -254,3 +254,17 @@ bitbake linux-imx -c menuconfig
 			MX8MP_IOMUXC_ECSPI2_MISO__UART4_DCE_CTS		0x140
 		>;
 	};
+	
+=============== es8316 codedec ===============
+
+arch\arm64\boot\dts\freescale\imx8mp-evk.dts
+arch\arm64\boot\dts\freescale\imx8mp-evk-dsp.dts
+sound\soc\fsl\fsl-asoc-card.c
+
+ref:
+https://blog.csdn.net/weixin_51178981/article/details/125598928?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-125598928-blog-120026194.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-125598928-blog-120026194.pc_relevant_recovery_v2&utm_relevant_index=11
+
+
+
+
+
