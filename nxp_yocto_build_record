@@ -317,6 +317,35 @@ sound-es8316 {
 
 
 
+=============== NXP CANbus test ===============
+// Check if FlexCAN driver is enabled in current Linux Kernel.
+Check the ".config" file in BSP
+Ex: CONFIG_CAN_FLEXCAN=m
+
+// Check if any can interface is available.
+ifconfig -a
+Ex: can0 Link encap:UNSPEC HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
+
+// Help information
+ip link set can0 type can help
+
+// Set bitrate to 500Kbps
+ip link set can0 type can bitrate 500000
+
+// Start the can0 interface
+ip link set can0 up
+Ex: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
+
+// List can0 settings.
+ip -details link show can0
+
+
+
+
+
+
+
+
 
 
 
