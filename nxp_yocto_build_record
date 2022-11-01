@@ -265,6 +265,58 @@ ref:
 https://blog.csdn.net/weixin_51178981/article/details/125598928?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-125598928-blog-120026194.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-125598928-blog-120026194.pc_relevant_recovery_v2&utm_relevant_index=11
 
 
+/* mickey, es8316 codec, audio-codec = <&codec>; */
+sound-es8316 {
+    compatible = "fsl,imx-audio-es8316";
+    model = "imx-audio-es8316";
+    audio-cpu = <&sai3>;
+    audio-codec = <&codec>;
+    audio-routing = 
+        "Ext Spk", "HPOL",
+        "Ext Spk", "HPOR";
+};
+
+
+&i2c3 {
+    ...
+    
+    /* mickey, es8316 codec */
+    codec: es8316@11 {
+        compatible = "everest,es8316";
+        reg = <0x11>;
+        clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIO_BLK_CTRL_SAI3_MCLK1>;
+        clock-names = "mclk";
+    };	
+ 
+}
+
+=============== USB host (Type A * 2 & USB2.0 CN3 / CN14) ===============
+// mickey, dr_mode "otg" to "host" for upper side USB port(type A)
+// dr_mode = "otg" > "host"
+&usb_dwc3_0 {
+	dr_mode = "host";
+	hnp-disable;
+	srp-disable;
+	adp-disable;
+	usb-role-switch;
+	role-switch-default-mode = "none";
+	snps,dis-u1-entry-quirk;
+	snps,dis-u2-entry-quirk;
+	status = "okay";
+
+	port {
+		usb3_drd_sw: endpoint {
+			remote-endpoint = <&typec_dr_sw>;
+		};
+	};
+};
+
+=============== TPM 2.0 ===============
+
+
+
+
+
 
 
 
