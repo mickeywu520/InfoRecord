@@ -232,7 +232,7 @@ https://github.com/itas109/CSerialPort
 Due to linux kernel 5.5 above deprecated GPIO_SYSFS, so need to enable by menuconfig
 
 bitbake linux-imx -c menuconfig
-1. enable enbaded_system
+1. enable embadded_system
 2. enable device driver > gpio support > GPIO SYSFS
 
 
