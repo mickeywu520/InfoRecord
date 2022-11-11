@@ -217,6 +217,8 @@ cat /sys/devices/platform/display-subsystem/drm/card1/card1-HDMI-A-1/modes
 =============== I.MX8M GPIO calc ===============
 https://blog.csdn.net/u014248033/article/details/107956182
 
+cat /sys/kernel/debug/gpio
+
 
 =============== website test via terminal ===============
 time curl -I https://www.google.com | grep HTTP
