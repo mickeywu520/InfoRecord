@@ -219,6 +219,9 @@ https://blog.csdn.net/u014248033/article/details/107956182
 
 cat /sys/kernel/debug/gpio
 
+Ex:
+echo 387 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio387/direction
 
 =============== website test via terminal ===============
 time curl -I https://www.google.com | grep HTTP
