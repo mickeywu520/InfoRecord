@@ -346,9 +346,10 @@ ip -details link show can0
 
 
 
+flexcan2
+gpio-123 (                    |regulator-can2-stby ) out lo
 
-
-
+gpio123 low is pbm, high is can1
 
 
 
