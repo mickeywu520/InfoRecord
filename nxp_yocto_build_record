@@ -344,6 +344,23 @@ Ex: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
 // List can0 settings.
 ip -details link show can0
 
+ip link set can0 up type can bitrate 125000
+ifconfig can0 up
+$ifconfig
+
+///////// DTS /////////
+
+// set micfil to disable
+&micfil {
+	#sound-dai-cells = <0>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_pdm>;
+	assigned-clocks = <&clk IMX8MP_CLK_PDM>;
+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+	assigned-clock-rates = <196608000>;
+	status = "disabled";
+};
+
 
 
 flexcan2
