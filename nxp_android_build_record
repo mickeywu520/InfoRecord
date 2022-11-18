@@ -1,0 +1,47 @@
+toolchain
+
+sudo apt-get install uuid uuid-dev \
+ zlib1g-dev liblz-dev \
+ liblzo2-2 liblzo2-dev \
+ lzop \
+ git curl \
+ u-boot-tools \
+ mtd-utils \
+ android-sdk-libsparse-utils \
+ android-sdk-ext4-utils \
+ device-tree-compiler \
+ gdisk \
+ m4 \
+ zlib1g-dev \
+ bison \
+ flex make \
+ libssl-dev \
+ gcc-multilib \
+ libghc-gnutls-dev \
+ swig \
+ liblz4-tool \
+ libdw-dev \
+ dwarves
+================================================
+NXP android source & package download
+
+# Download the package from NXP official website
+https://www.nxp.com/design/software/embedded-software/i-mx-software/android-os-for-i-mx-applications-processors:IMXANDROID
+
+Current Release > Build Sources > Install Source Package (click and download)
+
+# unzip the gz file
+tar xzvf imx-android-12.1.0_1.0.0.tar.gz
+
+# set git name & email
+git config --global user.name "First Last"
+git config --global user.email "first.last@company.com"
+
+# Download the google repo bin
+mkdir ~/bin
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+export PATH=${PATH}:~/bin
+source ~/imx-android-12.1.0_1.0.0/imx_android_setup.sh
+=================================================
+
