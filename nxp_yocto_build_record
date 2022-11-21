@@ -295,6 +295,9 @@ sound-es8316 {
  
 }
 
+///////// Test /////////
+speaker-test -c 2 sysdefault:CARD=imxaudioes8316
+
 =============== USB host (Type A * 2 & USB2.0 CN3 / CN14) ===============
 // mickey, dr_mode "otg" to "host" for upper side USB port(type A)
 // dr_mode = "otg" > "host"
