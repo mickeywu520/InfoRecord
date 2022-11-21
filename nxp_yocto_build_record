@@ -344,15 +344,63 @@ Ex: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
 // List can0 settings.
 ip -details link show can0
 
+///////// Test /////////
 ip link set can0 up type can bitrate 1000000
-ip link set can0 up type can bitrate 1000000 dbitrate 2000000 fd on
 ifconfig can0 up
 ifconfig
-cansend can0 1F334455#1122334455667788
+CAN0: candump can0
+CAN1: cansend can1 1F334455#1122334455667788
 
 ///////// DTS /////////
+	// mickey canbus test, tranceiver IC is low activite
+	// gpio = <&gpio5 5 GPIO_ACTIVE_LOW>; & gpio = <&gpio4 27 GPIO_ACTIVE_LOW>;
+	reg_can1_stby: regulator-can1-stby {
+		compatible = "regulator-fixed";
+		regulator-name = "can1-stby";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_flexcan1_reg>;
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpio = <&gpio5 5 GPIO_ACTIVE_LOW>;
+	};
 
-// set micfil to disable
+	reg_can2_stby: regulator-can2-stby {
+		compatible = "regulator-fixed";
+		regulator-name = "can2-stby";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_flexcan2_reg>;
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpio = <&gpio4 27 GPIO_ACTIVE_LOW>;
+	};
+
+	/* mickey, remove pdm
+	sound-micfil {
+		compatible = "fsl,imx-audio-card";
+		model = "imx-audio-micfil";
+		pri-dai-link {
+			link-name = "micfil hifi";
+			format = "i2s";
+			cpu {
+				sound-dai = <&micfil>;
+			};
+		};
+	};
+	*/
+	
+	/* mickey, remove pdm
+	pinctrl_pdm: pdmgrp {
+		fsl,pins = <
+			MX8MP_IOMUXC_SAI5_RXC__AUDIOMIX_PDM_CLK		0xd6
+			MX8MP_IOMUXC_SAI5_RXD0__AUDIOMIX_PDM_BIT_STREAM00	0xd6
+			MX8MP_IOMUXC_SAI5_RXD1__AUDIOMIX_PDM_BIT_STREAM01	0xd6
+			MX8MP_IOMUXC_SAI5_RXD2__AUDIOMIX_PDM_BIT_STREAM02	0xd6
+			MX8MP_IOMUXC_SAI5_RXD3__AUDIOMIX_PDM_BIT_STREAM03	0xd6
+		>;
+	};
+	*/
+	
+/* mickey, remove pdm
 &micfil {
 	#sound-dai-cells = <0>;
 	pinctrl-names = "default";
@@ -362,15 +410,4 @@ cansend can0 1F334455#1122334455667788
 	assigned-clock-rates = <196608000>;
 	status = "disabled";
 };
-
-
-
-flexcan2
-gpio-123 (                    |regulator-can2-stby ) out lo
-
-gpio123 low is pbm, high is can1
-
-
-
-
-
+*/
