@@ -296,7 +296,48 @@ sound-es8316 {
 }
 
 ///////// Test /////////
-speaker-test -c 2 sysdefault:CARD=imxaudioes8316
+
+aplay / amixer / arecord tutorial
+https://www.cnblogs.com/cslunatic/p/3227655.html
+
+Simple mixer control 'DAC Soft Ramp Rate',0
+  Capabilities: volume volume-joined
+  Playback channels: Mono
+  Capture channels: Mono
+  Limits: 0 - 4
+  Mono: 4 [100%]
+Simple mixer control 'DAC Source Mux',0
+  Capabilities: enum
+  Items: 'LDATA TO LDAC, RDATA TO RDAC' 'LDATA TO LDAC, LDATA TO RDAC' 'RDATA TO LDAC, RDATA TO RDAC' 'RDATA TO LDAC, LDATA TO RDAC'
+  Item0: 'LDATA TO LDAC, RDATA TO RDAC'
+Simple mixer control 'DAC Stereo Enhancement',0
+  Capabilities: volume volume-joined
+  Playback channels: Mono
+  Capture channels: Mono
+  Limits: 0 - 7
+  Mono: 7 [100%]
+
+Simple mixer control 'Left Headphone Mixer LLIN',0
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'Left Headphone Mixer Left DAC',0
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'Left Headphone Mux',0
+  Capabilities: enum
+  Items: 'lin1-rin1' 'lin2-rin2' 'lin-rin with Boost' 'lin-rin with Boost and PGA'
+  Item0: 'lin1-rin1'
+Simple mixer control 'Right Headphone Mixer RLIN',0
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+Simple mixer control 'Right Headphone Mixer Right DAC',0
+  Capabilities: pswitch pswitch-joined
+  Playback channels: Mono
+  Mono: Playback [on]
+
 
 =============== USB host (Type A * 2 & USB2.0 CN3 / CN14) ===============
 // mickey, dr_mode "otg" to "host" for upper side USB port(type A)
