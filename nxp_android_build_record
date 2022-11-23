@@ -42,6 +42,24 @@ mkdir ~/bin
 curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 export PATH=${PATH}:~/bin
+
+# source env
 source ~/imx-android-12.1.0_1.0.0/imx_android_setup.sh
+
+# download gcc
+https://developer.arm.com/downloads/-/gnu-a
+
+# AArch64 GNU/Linux target (aarch64-none-linux-gnu)
+ |- gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
+
+sudo tar -xvJf gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz -C /opt
+export AARCH64_GCC_CROSS_COMPILE=/opt/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+
+# download clang
+sudo git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 /opt/prebuilt-android-clang
+cd /opt/prebuilt-android-clang
+sudo git checkout 0fc0715d9392ca616605c07750211d7ca71f4e36
+export CLANG_PATH=/opt/prebuilt-android-clang
+
 =================================================
 
