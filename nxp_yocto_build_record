@@ -300,6 +300,23 @@ sound-es8316 {
 aplay / amixer / arecord tutorial
 https://www.cnblogs.com/cslunatic/p/3227655.html
 
+
+# amixer
+Simple mixer control 'Headphone',0
+  Capabilities: pvolume
+  Playback channels: Front Left - Front Right
+  Limits: Playback 0 - 3
+  Mono:
+  Front Left: Playback 3 [100%] [0.00dB]
+  Front Right: Playback 3 [100%] [0.00dB]
+Simple mixer control 'Headphone Mixer',0
+  Capabilities: volume
+  Playback channels: Front Left - Front Right
+  Capture channels: Front Left - Front Right
+  Limits: 0 - 11
+  Front Left: 11 [100%] [0.00dB]
+  Front Right: 11 [100%] [0.00dB]
+
 Simple mixer control 'DAC Soft Ramp Rate',0
   Capabilities: volume volume-joined
   Playback channels: Mono
@@ -337,7 +354,6 @@ Simple mixer control 'Right Headphone Mixer Right DAC',0
   Capabilities: pswitch pswitch-joined
   Playback channels: Mono
   Mono: Playback [on]
-
 
 =============== USB host (Type A * 2 & USB2.0 CN3 / CN14) ===============
 // mickey, dr_mode "otg" to "host" for upper side USB port(type A)
