@@ -490,3 +490,47 @@ CAN1: cansend can1 1F334455#1122334455667788
 	status = "disabled";
 };
 */
+
+
+
+
+=============== Wi-Fi QCA6174 ===============
+
+///////// Kernel config /////////
+CONFIG_MAC80211=y
+COCONFIG_NL80211_TESTMODE=y
+CONFIG_CFG80211_WEXT=y
+CONFIG_HOSTAP=y
+CONFIG_CFG80211_INTERNAL_REGDB=y
+
+///////// DTS /////////
+&pcie0 {    
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_pcie0>;
+    clkreq-gpio = <&gpio5 20 GPIO_ACTIVE_LOW>;
+    disable-gpio = <&gpio5 29 GPIO_ACTIVE_LOW>;
+    reset-gpio = <&gpio5 28 GPIO_ACTIVE_LOW>;
+    ext_osc = <1>;
+    hard-wired = <1>;
+    status = "okay";
+};
+
+regulators {
+    compatible = "simple-bus";    
+    #address-cells = <1>;    
+    #size-cells = <0>;    
+    epdev_on: fixedregulator@100 {        
+        compatible = "regulator-fixed";        
+	regulator-min-microvolt = <3300000>;        
+	regulator-max-microvolt = <3300000>;        
+	regulator-name = "epdev_on";
+	gpio = <&gpio4 9 0>;        
+	enable-active-high;
+    };
+}
+
+///////// Test /////////
+# Obtaining an IP addressThe
+wlp1s0:udhcpc -i wlp1s0
+
+
