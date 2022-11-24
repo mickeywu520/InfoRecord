@@ -268,7 +268,10 @@ sound\soc\fsl\fsl-asoc-card.c
 
 ref:
 https://blog.csdn.net/weixin_51178981/article/details/125598928?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-125598928-blog-120026194.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-10-125598928-blog-120026194.pc_relevant_recovery_v2&utm_relevant_index=11
-
+https://community.nxp.com/t5/i-MX-Processors/%E5%85%B3%E4%BA%8Eimx8mp-android11-%E4%B8%8Aes8316%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/td-p/1482802
+https://github.com/balena-os/linux-artik7/blob/master/sound/soc/nexell/nexell-es8316.c
+https://blog.csdn.net/baidu_26866585/article/details/120618955
+https://blog.csdn.net/baidu_26866585/article/details/113833251
 
 /* mickey, es8316 codec, audio-codec = <&codec>; */
 sound-es8316 {
@@ -299,7 +302,7 @@ sound-es8316 {
 
 aplay / amixer / arecord tutorial
 https://www.cnblogs.com/cslunatic/p/3227655.html
-
+https://blog.csdn.net/meirixuexi/article/details/71513007
 
 # amixer
 Simple mixer control 'Headphone',0
@@ -378,6 +381,10 @@ Simple mixer control 'Right Headphone Mixer Right DAC',0
 
 =============== TPM 2.0 ===============
 https://github.com/torvalds/linux/tree/master/Documentation/devicetree/bindings/security/tpm
+
+https://github.com/STMicroelectronics/TCG-TPM-I2C-DRV
+
+https://www.st.com/resource/en/data_brief/stpm4raspi.pdf
 
 CONFIG_TCG_TPM=y
 CONFIG_TCG_CRB=y
