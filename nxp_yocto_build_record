@@ -536,6 +536,11 @@ https://variwiki.com/index.php?title=VAR-SOM-MX6_Yocto_Unit_Testing_V9
 ifconfig -a
 ifconfig wlan0 up
 iw dev wlan0 scan | grep SSID
+
+# wpa_passphrase <YourAP> <YourPassword> >/etc/wpa_supplicant.conf
+wpa_passphrase TP-Link_75A3_5G swteam5g >/etc/wpa_supplicant.conf
+wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf
+
 ifconfig eth0 down
 ifconfig eth1 down
 udhcpc -iwlan0
