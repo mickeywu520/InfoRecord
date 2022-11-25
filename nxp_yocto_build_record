@@ -494,7 +494,7 @@ CAN1: cansend can1 1F334455#1122334455667788
 
 
 
-=============== Wi-Fi QCA6174 ===============
+=============== Wifi QCA6174 ===============
 
 ///////// Kernel config /////////
 CONFIG_MAC80211=y
@@ -530,7 +530,15 @@ regulators {
 }
 
 ///////// Test /////////
-# Obtaining an IP addressThe
-wlp1s0:udhcpc -i wlp1s0
+Ref:
+https://variwiki.com/index.php?title=VAR-SOM-MX6_Yocto_Unit_Testing_V9
 
+ifconfig -a
+ifconfig wlan0 up
+iw dev wlan0 scan | grep SSID
+ifconfig eth0 down
+ifconfig eth1 down
+udhcpc -iwlan0
+ifconfig
+ping 8.8.8.8
 
