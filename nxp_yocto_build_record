@@ -551,6 +551,16 @@ ping 8.8.8.8
 Ref:
 https://developer.toradex.com/linux-bsp/how-to/networking-and-connectivity/bluetooth-linux/
 
+systemctl start bluetooth.service
+connmanctl enable bluetooth
+bluetoothctl
+scan on
+scan off
+pair A4:4B:D5:77:33:DB
+Confirm passkey 117022 (yes/no): yes
+trust A4:4B:D5:77:33:DB
+connect A4:4B:D5:77:33:DB
+info A4:4B:D5:77:33:DB
 
 
 
