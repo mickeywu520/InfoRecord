@@ -562,6 +562,6 @@ trust A4:4B:D5:77:33:DB
 connect A4:4B:D5:77:33:DB
 info A4:4B:D5:77:33:DB
 
-
-
+=============== LTE Quectel EG25G ===============
+CONFIG_USB_NET_CDCETHER
 
