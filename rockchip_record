@@ -1,0 +1,4 @@
+///// Check PMIC rk8xx vol /////
+terminal 1: cat /proc/kmsg
+terminal 2: echo r 0x45 > /sys/rk8xx/rk8xx_dbg
+terminal 1: return hex code, need refer to pmic datasheet
