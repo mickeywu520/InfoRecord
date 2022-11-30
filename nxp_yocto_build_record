@@ -565,3 +565,17 @@ info A4:4B:D5:77:33:DB
 =============== LTE Quectel EG25G ===============
 CONFIG_USB_NET_CDCETHER
 
+
+
+
+=============== openjdk-8 ===============
+Ref:
+https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-openjdk-to-Yocto-Layers/ta-p/1128283
+
+
+
+
+=============== Yocto refer ===============
+https://wiki.yoctoproject.org/wiki/How_do_I
+
+
