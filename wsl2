@@ -7,3 +7,7 @@ https://zhuanlan.zhihu.com/p/521747491
 # WSL resize
 Ref:
 https://blog.csdn.net/CSqingchen/article/details/123395496
+
+
+# optimize vhd, 壓縮vdisk空間
+optimize-vhd -Path "D:\wsl-ubuntu-20.04\ext4.vhdx" -Mode full
