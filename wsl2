@@ -1,3 +1,9 @@
 # 解決刪除文件後 WSL2 磁盤空間不釋放的問題
 Ref:
 https://zhuanlan.zhihu.com/p/521747491
+
+
+
+# WSL resize
+Ref:
+https://blog.csdn.net/CSqingchen/article/details/123395496
