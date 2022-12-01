@@ -579,3 +579,24 @@ https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-openjdk-t
 https://wiki.yoctoproject.org/wiki/How_do_I
 
 
+
+
+=============== NXP Yocto Nodejs ===============
+If wanna build samll one image > imx-image-multimedia
+which need to modify the conf on top layer > build\conf or imx8mp_arbor\conf someting like that and follow below instruction
+1. local.conf
+# mickey
+IMAGE_INSTALL:append = " nodejs"
+IMAGE_INSTALL:append = " nodejs-npm" 
+
+2. Copy nodejs folder from 
+sources\meta-imx\meta-bsp\recipes-devtools
+To
+sources\meta-imx\meta-sdk\recipes-devtools
+
+3. bitbake imx-image-multimedia
+
+
+
+
+
