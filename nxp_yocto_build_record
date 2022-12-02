@@ -586,8 +586,13 @@ If wanna build samll one image > imx-image-multimedia
 which need to modify the conf on top layer > build\conf or imx8mp_arbor\conf someting like that and follow below instruction
 1. local.conf
 # mickey
+IMAGE_INSTALL:append = " git"
+IMAGE_INSTALL:append = " libwebsockets"
 IMAGE_INSTALL:append = " nodejs"
-IMAGE_INSTALL:append = " nodejs-npm" 
+IMAGE_INSTALL:append = " nodejs-npm"
+IMAGE_INSTALL:append = " redis"
+IMAGE_INSTALL:append = " apache2"
+IMAGE_INSTALL:append = " php" 
 
 2. Copy nodejs folder from 
 sources\meta-imx\meta-bsp\recipes-devtools
