@@ -622,3 +622,10 @@ PREFERRED_PROVIDER_virtual/java-native = "cacao-native"
 # Optional since there is only one provider for now
 PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
 
+
+
+
+=============== local package server ===============
+https://imxdev.gitlab.io/tutorial/How_to_apt-get_to_the_Yocto_Project_image/
+
+
