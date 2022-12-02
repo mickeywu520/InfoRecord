@@ -599,7 +599,8 @@ sources\meta-imx\meta-bsp\recipes-devtools
 To
 sources\meta-imx\meta-sdk\recipes-devtools
 
-3. bitbake imx-image-multimedia
+3. bitbake -f -c compile linux-imx && bitbake -f -c deploy linux-imx
+4. bitbake imx-image-multimedia
 
 
 
