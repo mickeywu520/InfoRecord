@@ -603,6 +603,22 @@ sources\meta-imx\meta-sdk\recipes-devtools
 4. bitbake imx-image-multimedia
 
 
+=============== Yocto openjdk-8 ===============
+Ref:
+https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-openjdk-to-Yocto-Layers/ta-p/1128283
 
+cd sources
+git clone git://git.yoctoproject.org/meta-java
 
+bblayer
+BBLAYERS = " \ ...
+${BSPDIR}/sources/meta-java \
+
+local.conf
+# Possible provider: cacao-initial-native and jamvm-initial-native
+PREFERRED_PROVIDER_virtual/java-initial-native = "cacao-initial-native"
+# Possible provider: cacao-native and jamvm-native
+PREFERRED_PROVIDER_virtual/java-native = "cacao-native"
+# Optional since there is only one provider for now
+PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
 
