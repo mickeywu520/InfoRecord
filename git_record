@@ -1,0 +1,2 @@
+# git checkout remote branch
+git checkout -b branch origin/branch
