@@ -622,7 +622,25 @@ PREFERRED_PROVIDER_virtual/java-native = "cacao-native"
 # Optional since there is only one provider for now
 PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
 
+=============== libwebsockets test ===============
+Ref:
+https://github.com/warmcat/libwebsockets/blob/main/READMEs/README.build.md
+https://www.twblogs.net/a/5b8dc40b2b71771883408041
 
+1. git clone https://github.com/warmcat/libwebsockets.git
+2. cd /path/to/src
+   mkdir build
+   cd build
+   cmake ..
+3. make && sudo make install
+4. after finished the compile, cd to bin diretory
+   cd bin
+5. Exec libwebsocket-test-server   
+   ./libwebsockets-test-server
+6. Open a browser
+   chromium --no-sandbox
+7. type localhost:7681/
+finished libwebsockets test.
 
 
 =============== local package server ===============
