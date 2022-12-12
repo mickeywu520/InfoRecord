@@ -648,3 +648,44 @@ finished libwebsockets test.
 https://imxdev.gitlab.io/tutorial/How_to_apt-get_to_the_Yocto_Project_image/
 
 
+
+=============== USB hub power rejection ===============
+Ref:
+https://blog.famzah.net/2010/08/11/usb-rejected-1-configuration-due-to-insufficient-available-bus-power/
+https://blog.csdn.net/kris_fei/article/details/84065481
+
+Error Msg:
+[   23.202782] usb 2-1.3: rejected 1 configuration due to insufficient available bus power
+[   23.202980] usb 2-1.3: no configuration chosen from 1 choice
+
+Workarround:
+echo 1 > /sys/bus/usb/devices/1-1.4/bConfigurationValue
+
+
+///// usb code modify /////
+
+/drivers/usb/core/hub.c
+
+static int hub_configure(struct usb_hub *hub,
+	struct usb_endpoint_descriptor *endpoint)
+{
+....
+	} else if ((hubstatus & (1 << USB_DEVICE_SELF_POWERED)) == 0) {
+
+		// mickey, added workarround for LTE module, S
+		#if 1
+			int remaining;
+			full_load = 2000;
+			hdev->bus_mA = full_load;
+			unit_load  = 500;
+			hub->descriptor->bHubContrCurrent = unit_load;
+			remaining = hdev->bus_mA -
+							hub->descriptor->bHubContrCurrent;
+		#else
+			int remaining = hdev->bus_mA -
+				hub->descriptor->bHubContrCurrent;
+		#endif
+		// mickey, added workarround for LTE module, E
+
+
+
