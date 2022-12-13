@@ -233,7 +233,7 @@ https://community.nxp.com/t5/i-MX-Processors/Using-PinMux-tool-config-tools-for-
 =============== UART test ===============
 https://github.com/itas109/CSerialPort
 
-COM3: gpio84 > 1
+COM3: gpio97 > 0 / gpio83 > 0 / gpio84 > 1
 COM4: gpio114 > 0 / gpio115 > 0 / gpio96 > 1
 
 =============== CONFIG_GPIO_SYSFS ===============
