@@ -22,6 +22,18 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 
 =========== error ===========
 
+ERROR:  OE-core's config sanity checker detected a potential misconfiguration.
+    Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).
+    Following is the list of potential problems / advisories:
+
+    Do not use Bitbake as root.
+
+Ref:
+https://blog.csdn.net/bird_fly1024/article/details/81451662
+
+
+=========== error ===========
+
 mkdir imx-yocto-bsp
 cd imx-yocto-bsp
 
