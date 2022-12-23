@@ -31,6 +31,9 @@ repo init -u https://source.codeaurora.org/external/imx/imx-manifest -b imx-linu
 # 5.15.52-2.1.0
 repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-kirkstone -m imx-5.15.52-2.1.0.xml
 
+# 5.15.71-2.2.0
+repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-kirkstone -m imx-5.15.71-2.2.0.xml
+
 repo sync
 
 
