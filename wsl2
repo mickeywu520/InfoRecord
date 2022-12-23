@@ -11,3 +11,18 @@ https://blog.csdn.net/CSqingchen/article/details/123395496
 
 # optimize vhd, 壓縮vdisk空間
 optimize-vhd -Path "D:\wsl-ubuntu-20.04\ext4.vhdx" -Mode full
+
+
+# Microsoft
+Ref:
+https://learn.microsoft.com/zh-tw/windows/wsl/vhd-size
+
+1. wsl --shutdown
+
+2. open powershell or cmd by administrator
+3. diskpart
+4. DISKPART> Select vdisk file="<pathToVHD>"
+    ex: DISKPART> Select vdisk file="D:\wsl-ubuntu-20.04\ext4.vhdx"
+5. DISKPART> detail vdisk   
+6. DISKPART> compact vdisk
+6. DISKPART> detach vdisk
