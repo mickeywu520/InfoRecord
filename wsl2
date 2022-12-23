@@ -26,3 +26,14 @@ https://learn.microsoft.com/zh-tw/windows/wsl/vhd-size
 5. DISKPART> detail vdisk   
 6. DISKPART> compact vdisk
 6. DISKPART> detach vdisk
+
+
+
+# .wslconfig, wsl env
+
+Make a .wslconfig file in your user account folder, add fill cmd as below. 
+# Settings apply across all Linux distros running on WSL 2
+[wsl2]
+
+# Limits VM memory to use no more than 4 GB, this can be set as whole numbers using GB or MB
+memory=20GB 
