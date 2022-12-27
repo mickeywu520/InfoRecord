@@ -114,6 +114,11 @@ sudo apt install -y gcc-10 g++-10 cpp-10
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
 
 ## for qt6
+
+if ubuntu 22.04
+sudo nano /etc/apt/sources.list
+deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main universe
+
 sudo apt install -y gcc-8 g++-8
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 100 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
 
