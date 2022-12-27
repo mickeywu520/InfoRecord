@@ -284,6 +284,9 @@ bitbake linux-imx -c menuconfig
 		>;
 	};
 	
+Comport for RS485 transmit
+#define MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09
+	
 =============== es8316 codedec ===============
 
 arch\arm64\boot\dts\freescale\imx8mp-evk.dts
