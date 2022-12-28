@@ -729,5 +729,16 @@ git://git.yoctoproject.org/meta-java
 https://git.yoctoproject.org/meta-java
 https://git.yoctoproject.org/git/meta-java
 
+=============== Networkmanager ===============
 
+local.conf
+
+PACKAGE_EXCLUDE = "connman connman-client connman-tools connman-conf connman-tests"
+IMAGE_INSTALL:append = " networkmanager"
+
+
+networkmanager_1.36.2.bb
+
+#RCONFLICTS:${PN} = "connman"
+RREPLACES:${PN} = "connman"
 
