@@ -287,7 +287,11 @@ bitbake linux-imx -c menuconfig
 	};
 	
 Comport for RS485 transmit
-#define MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09
+COM3:
+MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09
+
+COM4:
+MX8MP_IOMUXC_ECSPI2_SS0__GPIO5_IO13
 	
 =============== es8316 codedec ===============
 
