@@ -202,6 +202,8 @@ not sure why 0-6 not PHY addr not stable(maybe h/w or chip ic problem).
 	};
 };
 
+///// ethtool
+ethtool -s eth1 speed 1000 duplex full autoneg on
 
 =================================== cat video card info ===================================
 * Check h/w HPD PIN first
