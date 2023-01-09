@@ -449,6 +449,9 @@ ip link set can0 type can help
 // Set bitrate to 500Kbps
 ip link set can0 type can bitrate 500000
 
+// Set CAN FD mode
+ip link set can0 up type can bitrate 500000 dbiate 5000000 fd on
+
 // Start the can0 interface
 ip link set can0 up
 Ex: ADDRCONF(NETDEV_CHANGE): can0: link becomes ready
