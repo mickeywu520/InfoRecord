@@ -450,7 +450,7 @@ ip link set can0 type can help
 ip link set can0 type can bitrate 500000
 
 // Set CAN FD mode
-ip link set can0 up type can bitrate 500000 dbiate 5000000 fd on
+ip link set can0 up type can bitrate 500000 dbitrate  5000000 fd on
 
 // Start the can0 interface
 ip link set can0 up
