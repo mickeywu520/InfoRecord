@@ -577,6 +577,10 @@ iw dev wlan0 scan | grep SSID
 wpa_passphrase TP-Link_75A3_5G swteam5g >/etc/wpa_supplicant.conf
 wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf
 
+##### debug message
+wpa_passphrase edimax_2.4G_C6CFAD swteam2g >/etc/wpa_supplicant.conf
+sudo wpa_supplicant -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf -d &
+
 ifconfig eth0 down
 ifconfig eth1 down
 udhcpc -iwlan0
