@@ -569,6 +569,20 @@ regulators {
 Ref:
 https://variwiki.com/index.php?title=VAR-SOM-MX6_Yocto_Unit_Testing_V9
 
+Note: 
+NetworkManager has conflit with Wpa_supplicant & udhcpc packages, 
+So, if install the NetworkManager, please do not connect WiFi
+by Wpa_supplicant & udhcpc, that will cause disconnection issue
+
+or 
+
+Remove Networkmanager and connect WiFi by Wpa_supplicant & udhcpc
+
+------------------ Networkmanager ------------------
+https://variwiki.com/index.php?title=Wifi_NetworkManager
+
+
+------------------ wpa_suppclant & udhcpc ------------------
 ifconfig -a
 ifconfig wlan0 up
 iw dev wlan0 scan | grep SSID
@@ -586,6 +600,7 @@ ifconfig eth1 down
 udhcpc -iwlan0
 ifconfig
 ping 8.8.8.8
+------------------ wpa_suppclant & udhcpc ------------------
 
 ///////// Bluetooth test /////////
 Ref:
