@@ -770,3 +770,6 @@ networkmanager_1.36.2.bb
 #RCONFLICTS:${PN} = "connman"
 RREPLACES:${PN} = "connman"
 
+=============== hotspot ===============
+https://gist.github.com/narate/d3f001c97e1c981a59f94cd76f041140?permalink_comment_id=3193578
+
