@@ -205,6 +205,10 @@ not sure why 0-6 not PHY addr not stable(maybe h/w or chip ic problem).
 ///// ethtool
 ethtool -s eth1 speed 1000 duplex full autoneg on
 
+///// Lan reset PIN
+LAN1: SAI1_RXD0 (GPIO4_IO02) >>> GPIO130
+LAN2: SAI2_RXC (GPIO4_IO22) >>> GPIO150
+
 =================================== cat video card info ===================================
 * Check h/w HPD PIN first
 
