@@ -1,2 +1,71 @@
 # git checkout remote branch
 git checkout -b branch origin/branch
+
+//////////////////////////////////////////////////////////////////////////////
+remove old .git folder
+#1
+( find . -type d -name ".git" && find . -name ".gitignore" && find . -name ".gitmodules" && find . -name ".repo" ) | xargs rm -rf
+#2
+( find . -type d -name ".gitignore" && find . -name ".gitmodules" ) | xargs rm -rf
+#3
+( find . -type d -name ".git") | xargs rm -rf
+
+find . -type f -name .gitignore -exec rm {} \;
+
+git init
+git add --all
+git commit -m "Init project"
+git remote add origin http://192.168.0.105/embedded/rk3399_linux.git
+
+git push origin master --force
+
+if show error
+GitLab: You are not allowed to force push code to a protected branch on this project.
+Porject > Settings > Repository > protected branch > unprotect
+
+if show error:
+fatal: remote origin already exists.
+删除远程分支：
+git remote rm origin
+
+git push origin master --force
+
+
+https://community.atlassian.com/t5/Bitbucket-questions/Git-Push-Hanging-even-for-new-repository/qaq-p/63601
+
+
+# Keep old git log
+▍新的 repo 沒有任何記錄、完全是空的 (解法一)
+意思是有一個空的 repo 裡面沒有任何檔案，也沒有任何 commit 紀錄。文章中將介紹適用於此情境的兩種解法，第一種所使用到的 Git 指令較平易近人，在開發中頻繁被應用，相信時常使用 Git 的讀者一定不陌生；第二種則是相對少見的 Git 指令 (git --mirror)，將在文末做介紹，讓我們先來看看第一種解法吧！
+一、透過 git clone 方法來複製 repo 到一個新的資料夾
+git clone [old-repo-url] new-repo-name
+cd new-repo-name
+這時候你用 git remote -v 檢查會發現，origin 的指向為 [old-repo-url]
+二、用 remote set-url 將 origin remote 改成指向 [new-repo-url]
+git remote set-url origin [new-repo-url]
+三、push 指令後加上 --all, --tags 將 branches, tags 也 push 至新 repo，關於這兩個指令的詳情可以閱讀：https://git-scm.com/docs/git-push
+git push --all
+git push --tags
+
+
+----------------------------------
+
+解決方法
+1 . Change the URI (URL) for a remote Git repository
+
+第一個方法直接用指令修改 remote 遠端數據庫的位置(URL)
+
+git remote set-url origin git://new.url.here
+2 . Delete remove origin
+
+第二個方法是使用指令刪除舊有的 remote
+
+To remove a remote:
+
+git remote remove origin
+To add a remote:
+
+git remote add origin yourRemoteUrl
+Finally
+
+git push -u origin master
