@@ -69,3 +69,41 @@ git remote add origin yourRemoteUrl
 Finally
 
 git push -u origin master
+
+///////////////////////////////////////////////////////////////////////////
+Create a new repository
+
+git clone http://192.168.0.62/nxp_bsp/imx_yocto_5.15.32.git
+cd imx_yocto_5.15.32
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Push an existing folder
+
+cd existing_folder
+git init
+git remote add origin http://192.168.0.62/nxp_bsp/imx_yocto_5.15.32.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Push an existing Git repository
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://192.168.0.62/nxp_bsp/imx_yocto_5.15.32.git
+git push -u origin --all
+git push -u origin --tags
+
+
+
+
+
+
+
+
+
+
+
