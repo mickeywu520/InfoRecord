@@ -670,6 +670,8 @@ https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-openjdk-t
 cd sources
 git clone git://git.yoctoproject.org/meta-java
 
+git checkout -b warrior origin/warrior
+
 bblayer
 BBLAYERS = " \ ...
 ${BSPDIR}/sources/meta-java \
