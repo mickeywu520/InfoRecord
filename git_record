@@ -12,6 +12,9 @@ remove old .git folder
 
 find . -type f -name .gitignore -exec rm {} \;
 
+Ex:
+( find . -type d -name ".git" && find . -name ".gitmodules" && find . -name ".repo" ) | xargs rm -rf
+
 git init
 git add --all
 git commit -m "Init project"
