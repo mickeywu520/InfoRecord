@@ -95,6 +95,10 @@ bb.warn(msg): Writes "WARNING: msg" to the log while also logging to stdout.
 bb.error(msg): Writes "ERROR: msg" to the log while also logging to stdout.
 bb.fatal(msg): This logging function is similar to bb.error(msg) but also causes the calling task to fail.
 
+=================================== bitbake command ===================================
+# list package support tasks
+bitbake [package] -c listtasks
+
 =================================== Download the uuu tool from ===================================
 https://github.com/NXPmicro/mfgtools
 
