@@ -1,8 +1,7 @@
 # git checkout remote branch
 git checkout -b branch origin/branch
 
-//////////////////////////////////////////////////////////////////////////////
-remove old .git folder
+--------------- remove old .git folder ---------------
 #1
 ( find . -type d -name ".git" && find . -name ".gitignore" && find . -name ".gitmodules" && find . -name ".repo" ) | xargs rm -rf
 #2
@@ -15,6 +14,10 @@ find . -type f -name .gitignore -exec rm {} \;
 Ex:
 ( find . -type d -name ".git" && find . -name ".gitmodules" && find . -name ".repo" ) | xargs rm -rf
 
+--------------- show modified only ---------------
+git ls-files -m
+
+--------------- git init project ---------------
 git init
 git add --all
 git commit -m "Init project"
@@ -73,8 +76,8 @@ Finally
 
 git push -u origin master
 
-///////////////////////////////////////////////////////////////////////////
-Create a new repository
+--------------- git new a repository ---------------
+# Create a new repository 
 
 git clone http://192.168.0.62/nxp_bsp/imx_yocto_5.15.32.git
 cd imx_yocto_5.15.32
@@ -83,7 +86,7 @@ git add README.md
 git commit -m "add README"
 git push -u origin master
 
-Push an existing folder
+# Push an existing folder 
 
 cd existing_folder
 git init
@@ -92,7 +95,7 @@ git add .
 git commit -m "Initial commit"
 git push -u origin master
 
-Push an existing Git repository
+# Push an existing Git repository 
 
 cd existing_repo
 git remote rename origin old-origin
