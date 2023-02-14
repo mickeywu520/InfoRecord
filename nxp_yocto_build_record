@@ -769,6 +769,9 @@ https://git.yoctoproject.org/git/meta-java
 
 =============== Networkmanager ===============
 
+please remove connman and related tool as following bb file
+packagegroup-core-tools-testapps.bb
+
 local.conf
 
 PACKAGE_EXCLUDE = "connman connman-client connman-tools connman-conf connman-tests"
