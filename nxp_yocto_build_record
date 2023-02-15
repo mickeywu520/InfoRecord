@@ -770,7 +770,8 @@ https://git.yoctoproject.org/git/meta-java
 =============== Networkmanager ===============
 
 please remove connman and related tool as following bb file
-packagegroup-core-tools-testapps.bb
+"packagegroup-core-tools-testapps.bb"
+path: /sources/poky/meta/recipes-core/packagegroups/packagegroup-core-tools-testapps.bb
 
 local.conf
 
