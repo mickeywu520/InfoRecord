@@ -6,3 +6,15 @@ sudo apt install g++-aarch64-linux-gnu
 
 compile for aarch64
 aarch64-linux-gnu-gcc CCTalkPortTest.cpp CCTalkPortTest.h -o CCTalkPortTest.out
+
+
+
+======== make a so shared lib (iot800n ubuntu libIgnState.so) ========
+
+sudo gcc -shared -fPIC -o libIgnState.so ignState.c ignState.h
+sudo cp libIgnState.so /usr/local/lib
+sudo ldconfig
+
+======== test the shared lib ========
+make a test app
+sudo gcc -o test.out test.c -L./Lib -lIgnState
