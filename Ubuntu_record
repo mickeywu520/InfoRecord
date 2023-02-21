@@ -12,9 +12,62 @@ aarch64-linux-gnu-gcc CCTalkPortTest.cpp CCTalkPortTest.h -o CCTalkPortTest.out
 ======== make a so shared lib (iot800n ubuntu libIgnState.so) ========
 
 sudo gcc -shared -fPIC -o libIgnState.so ignState.c ignState.h
-sudo cp libIgnState.so /usr/local/lib
+sudo cp libIgnState.so /usr/local/lib/
 sudo ldconfig
+
+======== ignState.c ========
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+long parse_ign_vol(char* raw_vol) {
+    long ign = strtol(raw_vol, NULL, 10);
+    long radio = 36225;
+    long ign_d, ign_f;
+    ign = ign * radio;
+    ign_d = (ign / 1000000) * 1000;
+    ign_f = ign % 1000000;
+    ign_f = ign_f / 1000;
+    return ign;
+}
+
+long get_voltage_raw() {
+    int fd = open("/sys/bus/iio/devices/iio:device0/in_voltage1_raw", O_RDONLY);
+    if (fd < 0) {
+        perror("Failed to open voltage file");
+        return -1;
+    }
+    char buf[10];
+    int num_read = read(fd, buf, sizeof(buf));
+    if (num_read < 0) {
+        perror("Failed to read voltage file");
+        close(fd);
+        return -1;
+    }
+    close(fd);
+    //return atoi(buf);
+    return parse_ign_vol(buf);
+}
+======== ignState.h ========
+#ifndef IGNSTATE_H
+#define IGNSTATE_H
+
+int get_voltage_raw();
+
+#endif
 
 ======== test the shared lib ========
 make a test app
-sudo gcc -o test.out test.c -L./Lib -lIgnState
+sudo gcc -o test.out test.c -L./lib -lIgnState
+
+======== test.c ========
+#include <stdio.h>
+#include "ignState.h"
+
+int main() {
+    int voltage = get_voltage_raw();
+    printf("get Voltage raw from test app: %d\n", voltage);
+    return 0;
+}
+
