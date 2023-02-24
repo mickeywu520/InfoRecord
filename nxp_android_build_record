@@ -31,7 +31,7 @@ https://www.nxp.com/design/software/embedded-software/i-mx-software/android-os-f
 Current Release > Build Sources > Install Source Package (click and download)
 
 # unzip the gz file
-tar xzvf imx-android-12.1.0_1.0.0.tar.gz
+tar xvf imx-android-12.1.0_1.0.0.tar.gz
 
 # set git name & email
 git config --global user.name "First Last"
