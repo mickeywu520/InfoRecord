@@ -71,3 +71,56 @@ int main() {
     return 0;
 }
 
+
+================ watchdog ================
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <sys/ioctl.h>
+#include <linux/types.h>
+#include <linux/watchdog.h>
+
+#define WDIOC_SETTIMEOUT        _IOWR(WATCHDOG_IOCTL_BASE, 6, int)
+#define WDIOC_GETTIMEOUT        _IOR(WATCHDOG_IOCTL_BASE, 7, int)
+
+int main(void)
+{
+    int timeout1 = 22;
+    int timeout2;
+    int fd = open("/dev/watchdog", O_WRONLY); //start watchdog
+    int ret = 0;
+    if (fd == -1) {
+        perror("watchdog");
+        exit(EXIT_FAILURE);
+    }
+
+    ret = ioctl(fd, WDIOC_SETTIMEOUT, &timeout1); //set timeout
+    if (ret < 0)
+        printf("ioctl WDIOC_SETTIMEOUT failed.\n"); 
+
+    ret = ioctl(fd, WDIOC_GETTIMEOUT, &timeout2); //get timeout
+    if (ret < 0)
+        printf("ioctl WDIOC_SETTIMEOUT failed.\n"); 
+    printf("timeout = %d\n", timeout2);
+
+    while (1) {
+        ret = write(fd, "\0", 1); //feed the dog
+        if (ret != 1) {
+            ret = -1;
+            break;
+        }
+        printf("feed the dog\n");
+        sleep(10);
+
+    }
+    close(fd);
+    return ret;
+}
+
+
+
+
+
