@@ -53,8 +53,10 @@ https://developer.arm.com/downloads/-/gnu-a
  |- gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
  
 official prefer:
-gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf.tar.xz 
-gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz 
+gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf.tar.xz
+==> https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf.tar.xz?revision=ea238776-c7c7-43be-ba0d-40d7f594af1f&rev=ea238776c7c743beba0d40d7f594af1f&hash=264F62BCD400AF3766CF6DFF9EEDFDE5BF4DBD81
+gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz
+==> https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz?revision=61c3be5d-5175-4db6-9030-b565aae9f766&rev=61c3be5d51754db69030b565aae9f766&hash=43A89163112C6A1E6DBBE3B14CC393143722BD0E
  
 
 sudo tar -xvJf gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz -C /opt
