@@ -62,4 +62,6 @@ sudo git checkout 0fc0715d9392ca616605c07750211d7ca71f4e36
 export CLANG_PATH=/opt/prebuilt-android-clang
 
 =================================================
+Ubuntu 22.04 
+# sudo aptitude install libghc-gnutls-dev
 
