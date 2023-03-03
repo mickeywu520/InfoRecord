@@ -51,6 +51,11 @@ https://developer.arm.com/downloads/-/gnu-a
 
 # AArch64 GNU/Linux target (aarch64-none-linux-gnu)
  |- gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
+ 
+official prefer:
+gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf.tar.xz 
+gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz 
+ 
 
 sudo tar -xvJf gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz -C /opt
 export AARCH64_GCC_CROSS_COMPILE=/opt/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
