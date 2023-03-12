@@ -1,0 +1,2 @@
+# google sheel auto update
+=IMPORTHTML("https://99golden.tw/enq.php","table")
