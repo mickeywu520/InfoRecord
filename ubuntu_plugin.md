@@ -15,3 +15,7 @@
         
 # 如何在 Ubuntu 22.04 上安裝 XRDP
 ### https://deskinsight.net/zh-hant/%E5%A6%82%E4%BD%95%E5%9C%A8-ubuntu-22-04-%E4%B8%8A%E5%AE%89%E8%A3%9D-xrdp
+
+
+# 如何在 Ubuntu 16.04 上安裝 XRDP
+### https://huayig.cn/index.php/archives/110/
