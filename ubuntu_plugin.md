@@ -19,3 +19,5 @@
 
 # 如何在 Ubuntu 16.04 上安裝 XRDP
 ### https://huayig.cn/index.php/archives/110/
+### issue - ifconfig command not found
+    export PATH=$PATH:/sbin
