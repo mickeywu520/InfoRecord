@@ -121,6 +121,9 @@ int main(void)
 }
 
 
+# if windows cannot WinSCP or ssh to linux system, please check if openssh-server has been install or not
+sudo apt-get install openssh-server
+
 
 
 
