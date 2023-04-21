@@ -441,6 +441,11 @@ CONFIG_HW_RANDOM_TPM=y
 		reg = <0x2e>;
 		status = "okay";
 	};
+	
+new:
+https://patchwork.ozlabs.org/project/tpmdd/patch/1458502483-16887-13-git-send-email-christophe-h.ricard@st.com/
+	
+	
 
 =============== NXP CANbus test ===============
 // Check if FlexCAN driver is enabled in current Linux Kernel.
