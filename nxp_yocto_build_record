@@ -433,6 +433,35 @@ Simple mixer control 'Right Headphone Mixer Right DAC',0
 	};
 };
 
+===== recording. =====
+root@imx8mp-lpddr4-evk:/home/audio# tinypcminfo -D 1
+Info for card 1, device 0:
+
+PCM out:
+      Access:   0x000009
+   Format[0]:   0x000044
+   Format[1]:   00000000
+ Format Name:   S16_LE, S24_LE
+   Subformat:   0x000001
+        Rate:   min=16000Hz     max=48000Hz
+    Channels:   min=1           max=2
+ Sample bits:   min=16          max=32
+ Period size:   min=32          max=32767
+Period count:   min=2           max=8192
+
+PCM in:
+      Access:   0x000009
+   Format[0]:   0x000044
+   Format[1]:   00000000
+ Format Name:   S16_LE, S24_LE
+   Subformat:   0x000001
+        Rate:   min=16000Hz     max=48000Hz
+    Channels:   min=1           max=2
+ Sample bits:   min=16          max=32
+ Period size:   min=32          max=32767
+Period count:   min=2           max=8192
+
+
 =============== TPM 2.0 ===============
 https://github.com/torvalds/linux/tree/master/Documentation/devicetree/bindings/security/tpm
 
