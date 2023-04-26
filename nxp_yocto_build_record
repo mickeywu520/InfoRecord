@@ -341,6 +341,19 @@ sound-es8316 {
 
 ///////// Test /////////
 
+===== set default sound card =====
+and then create /etc/asound.conf with following:
+
+pcm.!default {
+    type hw
+    card 1
+}
+
+ctl.!default {
+    type hw           
+    card 1
+}
+
 aplay / amixer / arecord tutorial
 https://www.cnblogs.com/cslunatic/p/3227655.html
 https://blog.csdn.net/meirixuexi/article/details/71513007
