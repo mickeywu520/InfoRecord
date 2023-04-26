@@ -462,6 +462,9 @@ PCM in:
 Period count:   min=2           max=8192
 
 
+arecord -f cd -d 10 -r 44100  ./test.wav
+
+
 =============== TPM 2.0 ===============
 https://github.com/torvalds/linux/tree/master/Documentation/devicetree/bindings/security/tpm
 
