@@ -21,7 +21,10 @@ sudo apt-get install uuid uuid-dev \
  swig \
  liblz4-tool \
  libdw-dev \
- dwarves
+ dwarves \
+ bc cpio tar lz4 rsync \
+ ninja-build clang
+
 ================================================
 NXP android source & package download
 
