@@ -71,6 +71,27 @@ cd /opt/prebuilt-android-clang
 sudo git checkout 0fc0715d9392ca616605c07750211d7ca71f4e36
 export CLANG_PATH=/opt/prebuilt-android-clang
 
+# Source build env.
+source build/envsetup.sh
+
+# start build the uboot / kernel and Android Image
+## lunch project for i.MX 8M Plus EVK Board
+$ lunch evk_8mp (user)
+$ lunch evk_8mp-userdebug (userdebug)
+$ lunch evk_8mp-eng (engineer)
+Or
+69. evk_8mp-user
+70. evk_8mp-userdebug
+$ lunch
+$ 70
+
+## Build U-Boot/kernel with imx-make.sh first, but not to build Android images.
+$ ./imx-make.sh bootloader kernel -j4 2>&1 | tee build-log.txt
+## Start the process of build Android images with "make" function.
+$ make -j16 2>&1 | tee -a build-log.txt
+Or
+$ ./imx-make.sh -j16 2>&1 | tee build-log.txt
+
 =================================================
 Ubuntu 22.04 
 # sudo aptitude install libghc-gnutls-dev
