@@ -49,6 +49,9 @@ export PATH=${PATH}:~/bin
 # source env
 source ~/imx-android-12.1.0_1.0.0/imx_android_setup.sh
 
+# export working direction
+export MY_ANDROID='pwd'
+
 # download gcc
 https://developer.arm.com/downloads/-/gnu-a
 
