@@ -849,8 +849,9 @@ RREPLACES:${PN} = "connman"
 =============== hotspot ===============
 https://gist.github.com/narate/d3f001c97e1c981a59f94cd76f041140?permalink_comment_id=3193578
 
-
-
+=============== glmark2 ===============
+sudo apt-get update
+sudo apt-get install glmark2-es2-wayland
 
 
 
@@ -865,7 +866,6 @@ https://github.com/nxp-imx/meta-nxp-desktop
 
 repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-kirkstone -m imx-5.15.32-2.0.0_desktop.xml
 DISTRO=imx-desktop-xwayland MACHINE=imx8mpevk source imx-setup-desktop.sh -b build-desktop
-source setup-environment build-desktop
 bitbake imx-image-desktop
 
 
