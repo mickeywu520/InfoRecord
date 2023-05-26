@@ -3,3 +3,6 @@ https://blog.csdn.net/CJohn1994/article/details/125108065
 
 # IPV6 static IP settings.
 https://guiderworld.blogspot.com/2012/02/linuxipv6.html
+
+# check desktop system(linux)
+loginctl show-session 2 -p Type 
