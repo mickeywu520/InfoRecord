@@ -853,7 +853,11 @@ https://gist.github.com/narate/d3f001c97e1c981a59f94cd76f041140?permalink_commen
 sudo apt-get update
 sudo apt-get install glmark2-es2-wayland
 
-
+=============== add package layer ===============
+1. Put your package into build folder, such as "meta-weston-rdp"
+	>> https://github.com/leon-anavi/meta-weston-rdp/blob/main/README.md
+2. bitbake-layers add-layer meta-weston-rdp
+3. bitbake meta-weston-rdp
 
 
 
