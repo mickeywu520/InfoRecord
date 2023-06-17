@@ -106,7 +106,12 @@ git push -u origin --tags
 --------------- delect all branch without master ---------------
 git branch | grep -v "master" | xargs git branch -D 
 
+--------------- delet commit on gitlab ---------------
+git reset --hard CommitId
+git push -f origin master
 
+if show below error, please unprotect the project -> "Repository Settings" ->  "Protected Branches" -> unprotect
+ ! [remote rejected]     master -> master (pre-receive hook declined)
 
 
 
