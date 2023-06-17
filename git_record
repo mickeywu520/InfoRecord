@@ -103,6 +103,9 @@ git remote add origin http://192.168.0.62/nxp_bsp/imx_yocto_5.15.32.git
 git push -u origin --all
 git push -u origin --tags
 
+--------------- delect all branch without master ---------------
+git branch | grep -v "master" | xargs git branch -D 
+
 
 
 
