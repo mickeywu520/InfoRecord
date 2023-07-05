@@ -872,6 +872,9 @@ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-kirkstone -m i
 DISTRO=imx-desktop-xwayland MACHINE=imx8mpevk source imx-setup-desktop.sh -b build-desktop
 bitbake imx-image-desktop
 
+=============== v4l2-ctl ===============
+sudo apt-get install v4l-utils
+
 
 
 
