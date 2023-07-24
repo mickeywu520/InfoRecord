@@ -1,8 +1,23 @@
 # 蓝牙HID——将android设备变成蓝牙键盘（BluetoothHidDevice）
 https://blog.csdn.net/CJohn1994/article/details/125108065
-
+=============================================================
 # IPV6 static IP settings.
 https://guiderworld.blogspot.com/2012/02/linuxipv6.html
-
+=============================================================
 # check desktop system(linux)
 loginctl show-session 2 -p Type 
+=============================================================
+# [Ubuntu 22.04] IPV6 with random local address
+etc/NetworkManager/NetworkManager.conf
+
+add:
+[ipv6]
+ignore-auto-dns=ture
+dhcp=ipv6
+
+write
+sudo sysctl -w net.ipv6.conf.all.addr_gen_mode=1
+
+read
+sudo sysctl -a | grep ipv6 | grep -w "addr_gen_mode"
+=============================================================
