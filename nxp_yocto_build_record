@@ -875,8 +875,8 @@ bitbake imx-image-desktop
 =============== v4l2-ctl ===============
 sudo apt-get install v4l-utils
 
-
-
+=============== mouse cursor in boot logo phase ===============
+https://blog.csdn.net/qq_33753562/article/details/121140699
 
 
 
