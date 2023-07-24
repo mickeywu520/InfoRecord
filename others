@@ -20,4 +20,7 @@ sudo sysctl -w net.ipv6.conf.all.addr_gen_mode=1
 
 read
 sudo sysctl -a | grep ipv6 | grep -w "addr_gen_mode"
+
+* need!
+sudo systemctl restart NetworkManager
 =============================================================
