@@ -7,20 +7,15 @@ https://guiderworld.blogspot.com/2012/02/linuxipv6.html
 # check desktop system(linux)
 loginctl show-session 2 -p Type 
 =============================================================
-# [Ubuntu 22.04] IPV6 with random local address
-etc/NetworkManager/NetworkManager.conf
+# [Ubuntu 22.04] IPV6 with SLAAC
 
-add:
-[ipv6]
-ignore-auto-dns=ture
-dhcp=ipv6
+nmcli device status
 
-write
-sudo sysctl -w net.ipv6.conf.all.addr_gen_mode=1
+sudo nmcli connection show 'Wired connection 1' | grep ipv6.method
 
-read
-sudo sysctl -a | grep ipv6 | grep -w "addr_gen_mode"
+sudo nmcli connection modify 'Wired connection 1' ipv6.method auto ipv6.dhcp-timeout 0
 
-* need!
 sudo systemctl restart NetworkManager
+
+ping6 fe80::9fbd:76e2:e962:3f15%eth0
 =============================================================
