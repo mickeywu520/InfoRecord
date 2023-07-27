@@ -7,6 +7,14 @@ https://guiderworld.blogspot.com/2012/02/linuxipv6.html
 # check desktop system(linux)
 loginctl show-session 2 -p Type 
 =============================================================
+Turn off ubuntu 22.04 auto suspend by command
+
+# Disable autosuspend when on AC power
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+
+# Disable autosuspend when on battery power
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+=============================================================
 # [Ubuntu 22.04] IPV6 with SLAAC
 
 nmcli device status
