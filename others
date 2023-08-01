@@ -15,15 +15,15 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'no
 # Disable autosuspend when on battery power
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
 =============================================================
-# [Ubuntu 22.04] IPV6 with SLAAC
+# [Ubuntu 22.04] IPV6 SLAAC with NetworkManager
 
-nmcli device status
+Go to ethernet settings and changed the connection method to link-local only
 
-sudo nmcli connection show 'Wired connection 1' | grep ipv6.method
+/etc/NetworkManager/system-connections
 
-sudo nmcli connection modify 'Wired connection 1' ipv6.method auto ipv6.dhcp-timeout 0
-
-sudo systemctl restart NetworkManager
-
-ping6 fe80::9fbd:76e2:e962:3f15%eth0
+[ipv6]
+addr-gen-mode=eui64
+dhcp-timeout=60
+ip6-privacy=0
+method=link-local
 =============================================================
