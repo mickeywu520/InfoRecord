@@ -524,6 +524,9 @@ ifconfig
 CAN0: candump can0
 CAN1: cansend can1 1F334455#1122334455667788
 
+higer than 8 byte
+cansend can0 '123##1.11223344556677889900'
+
 ///////// DTS /////////
 	// mickey canbus test, tranceiver IC is low activite
 	// gpio = <&gpio5 5 GPIO_ACTIVE_LOW>; & gpio = <&gpio4 27 GPIO_ACTIVE_LOW>;
