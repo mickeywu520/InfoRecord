@@ -23,24 +23,26 @@ startUpCanDump() {
 }
 
 sendCanMsg() {
-    while true
-    do
+while true
+do
         CAN_MSG=""
-        for ((i=0; i<32;i++))
+        for ((i=0; i<64;i++))
         do
             randomByte=$(printf "%02X" $((RANDOM%256)))
             CAN_MSG+=$randomByte
         done
 
-        while [ ${#CAN_MSG} -lt 64 ]
-        do
-                randomByte=$(printf "%02X" $((RANDOM%256)))
-                CAN_MSG+=$randomByte
-        done
+        #while [ ${#CAN_MSG} -lt 64 ]
+        #do
+        #        randomByte=$(printf "%02X" $((RANDOM%256)))
+        #        CAN_MSG+=$randomByte
+        #done
 
         #raw_data=$(cansend "$CAN0" "1F334455#$CAN_MSG" | awk -F ' ' '{}print $2')
-		raw_data=$(cansend "$CAN0" "1F334455#$CAN_MSG")
+	raw_data=$(cansend "$CAN0" "1F334455##1.$CAN_MSG")
         echo "send can msg : can0 => $CAN_MSG"
+	LEN=${#CAN_MSG}
+	echo "len : $((LEN / 2)) byte"
         sleep 1
 done
 }
@@ -51,6 +53,10 @@ canState
         then
         echo "canbus is down"
         canUp
+	sleep 1
+	startUpCanDump
+	sleep 1
+	sendCanMsg
 else
         echo "canbus already up"
         startUpCanDump
