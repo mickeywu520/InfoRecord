@@ -6,3 +6,8 @@ bitbake-layers add meta-arbor/
 bitbake-layers show-layers
 cd meta-arbor
 mkdir machine
+
+
+weston.ini
+/etc/xdg/weston/weston.ini
+idle-time=0
