@@ -27,3 +27,8 @@ dhcp-timeout=60
 ip6-privacy=0
 method=link-local
 =============================================================
+
+Port forwarding - socat
+sudo apt-get install socat
+sudo socat TCP4-LISTEN:XXX,fork,reuseaddr TCP4:192.168.1.102:80
+
