@@ -98,6 +98,17 @@ $ make -j16 2>&1 | tee -a build-log.txt
 Or
 $ ./imx-make.sh -j16 2>&1 | tee build-log.txt
 
+============ if error ============
+ ./imx-make.sh 
+make: Entering directory '/media/14t_disk/mickey_bsp/NXP/Android/imx-android-13.0.0_2.0.0/android_build'
+/media/14t_disk/mickey_bsp/NXP/Android/imx-android-13.0.0_2.0.0/android_build/device/nxp/common/build/kernel.mk:68: *** CLANG_BIN:/opt/prebuilt-android-clang/clang-r487747c/bin does not exist. Please update clang to latest version: cd /opt/prebuilt-android-clang; sudo git remote update; sudo git checkout origin/master .  Stop.
+make: Leaving directory '/media/14t_disk/mickey_bsp/NXP/Android/imx-android-13.0.0_2.0.0/android_build'
+
+cd /opt/prebuilt-android-clang
+sudo git remote update
+sudo git checkout origin/master
+============ if error ============
+
 # Flash image by script
 .\uuu_imx_android_flash.bat -f imx8mp
 
