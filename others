@@ -34,8 +34,22 @@ sudo socat TCP4-LISTEN:XXX,fork,reuseaddr TCP4:192.168.1.102:80
 
 ======================================
 [LVDS]
-
-
+----------------------------------------------------------------------
+Signal      Item        Symbol                 Min      Typ      Max    Unit
+----------------------------------------------------------------------
+Vertical   | Period     | Tv                   | 1032   1066    1150    Th
+Section    | Active     | Tdisp(v)             | 1024   1024    1024    Th 
+           | Blanking   | Tbp(v)+Tfp(v)+PWvs   | 8      42      126     Th
+----------------------------------------------------------------------
+Horizontal | Period     | Th                   | 780    844    2048     Tclk
+Section    | Active     | Tdisp(h)             | 640    640    640      Tclk
+           | Blanking   | Tbp(h)+Tfp(h)+PWhs   | 140    204    1408     Tclk
+----------------------------------------------------------------------
+Clock      | Period     | Tclk                 | 14.81  18.52  25       ns  
+           | Frequency  | Freq                 | 40     54     67.5     MHz
+----------------------------------------------------------------------
+Frame rate | Frame rate | F                    | 50     60     75       Hz
+----------------------------------------------------------------------
 
 上圖中，Vertical section blanking=42, Horizontal section blanking=204,在填充6個參數時只需要滿足關係：vbp+vfp+vs=42,hbp+hfp+hs=204,各值自行分配(通常hbp 和vbp取較大值),例如
 hback-porch = <150>;
