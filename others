@@ -32,3 +32,15 @@ Port forwarding - socat
 sudo apt-get install socat
 sudo socat TCP4-LISTEN:XXX,fork,reuseaddr TCP4:192.168.1.102:80
 
+======================================
+[LVDS]
+
+
+
+上圖中，Vertical section blanking=42, Horizontal section blanking=204,在填充6個參數時只需要滿足關係：vbp+vfp+vs=42,hbp+hfp+hs=204,各值自行分配(通常hbp 和vbp取較大值),例如
+hback-porch = <150>;
+hfront-porch = <50>;
+vback-porch = <30>;
+vfront-porch = <11>;
+hsync-len = <4>;
+vsync-len = <1>;
