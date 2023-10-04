@@ -58,3 +58,12 @@ vback-porch = <30>;
 vfront-porch = <11>;
 hsync-len = <4>;
 vsync-len = <1>;
+======================================
+[Control gpio in uboot (NXP example)]
+gpio status -a - List所有GPIO
+gpio toggle GPIO5_20 - 更換GPIO方向
+gpio set GPIO5_20 1 - 設定GPIO輸出為high
+gpio clear GPIO5_20 - 設定GPIO輸出為low
+======================================
+
+
