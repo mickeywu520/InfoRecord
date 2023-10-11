@@ -2,3 +2,12 @@
 terminal 1: cat /proc/kmsg
 terminal 2: echo r 0x45 > /sys/rk8xx/rk8xx_dbg
 terminal 1: return hex code, need refer to pmic datasheet
+
+
+===========================================
+[rk356x] [patch] Android 13 boot from sdcard failed
+device/rockchip/rk356x/BoardConfig.mk
+
+-PRODUCT_BOOT_DEVICE := fe310000.sdhci,fe330000.nandc
++PRODUCT_BOOT_DEVICE := fe310000.sdhci,fe330000.nandc,fe2b0000.dwmmc
+===========================================
