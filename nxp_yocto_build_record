@@ -891,4 +891,8 @@ https://community.nxp.com/t5/i-MX-Processors/MIPI-dsi-panel-without-bridge-on-im
 http://ess-wiki.advantech.com.tw/view/AIM-Linux/RSB-3720 ==> click "Release Note"
 http://ess-wiki.advantech.com.tw/view/IoTGateway/BSP/Linux/iMX8/OS_Support_List_4.0_release_RSB-3720 ==> click "Dropbox link for imx8 Yocto 4.0 BSP and Image"
 
+=============== UUU tool ===============
+fixed the uuu tool cannot recognize USB port in serial download mode
+If not using PTN5110 IC(USB type C), which must disable TCPC config.
++# CONFIG_USB_TCPC is not set
 
