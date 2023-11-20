@@ -1,1 +1,19 @@
+Setup the RUST env in Windows
+1. Install the rustup
+https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe
 
+2. Install the Microsoft C++ build tools
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
+  a - 勾選「使用 C++ 的桌面開發」
+  b - 語言套件改勾選「英文」
+
+3. Set rustup & cargo to windows env
+Ex:
+C:\Users\mickey\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin
+C:\Users\mickey\.cargo\bin
+
+4. Recommand the Visual studio code for further develop
+5. Install the plug-in "rust-analyzer" in VS code
+
+Ref:
+https://hackmd.io/@yipo/HyWGoEfsu
