@@ -1,4 +1,4 @@
-Setup the RUST env in Windows
+============ Setup the RUST env in Windows ============
 1. Install the rustup
 https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe
 
@@ -9,11 +9,28 @@ https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 3. Set rustup & cargo to windows env
 Ex:
-C:\Users\mickey\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin
-C:\Users\mickey\.cargo\bin
+  a - C:\Users\mickey\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin
+  b - C:\Users\mickey\.cargo\bin
+  c - Check your installation
+    |- rustc --version
+  d - keep your Rust installation up to date
+    |- rustup update
 
 4. Recommand the Visual studio code for further develop
 5. Install the plug-in "rust-analyzer" in VS code
 
+6. Using the cargo new to create a new project
+cargo new hello_world
+cd hello_world
+
+7. Using Cargo build to build Rust project.
+cargo build
+
+8. Using Cargo run to launch Rust project.
+cargo run
+
 Ref:
 https://hackmd.io/@yipo/HyWGoEfsu
+============ Setup the RUST env in Windows ============
+
+
