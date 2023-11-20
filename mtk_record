@@ -1,5 +1,7 @@
-Ubuntu on genio
-Video Video Decoder 
+============== Ubuntu on Genio ==============
+https://mediatek.gitlab.io/genio/doc/ubuntu/index.html
+
+============== Video Video Decoder ==============
 https://mediatek.gitlab.io/genio/doc/ubuntu/bsp-installation/video.html
 
 sudo -i
@@ -8,3 +10,10 @@ export XDG_RUNTIME_DIR=/run/user/1000
 gst-launch-1.0 -v filesrc location=/home/ubuntu/test-h264.mp4 ! \
 parsebin ! v4l2h264dec ! \
 v4l2convert output-io-mode=5 ! waylandsink
+
+============== additional information ==============
+If your h/w ROM is UFS, you need to use the canonical(Ubuntu) for UFS image.
+1. 需要跟ubuntu索取Ubuntu image for UFS(包含 Ubuntu.img及firmware.vfat)
+2. u-boot-initial-env的boot_targets依照官方說法是要改成mmc0, 但是會出現 ## Error: "bootcmd_mmc0" not defined
+3. 將boot_targets改為scsi2, 並刪除 u-boot-env.bin, 重新燒錄整個image(genio-flash.exe)或 genio-flash.exe mmc0boot1:u-boot-initial-env
+4. eMMC需要設定為mmc0, UFS需要設定為scsi2
