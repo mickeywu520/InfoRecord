@@ -1,0 +1,10 @@
+Ubuntu on genio
+Video Video Decoder 
+https://mediatek.gitlab.io/genio/doc/ubuntu/bsp-installation/video.html
+
+sudo -i
+export XDG_RUNTIME_DIR=/run/user/1000
+# Play the video we've just encoded
+gst-launch-1.0 -v filesrc location=/home/ubuntu/test-h264.mp4 ! \
+parsebin ! v4l2h264dec ! \
+v4l2convert output-io-mode=5 ! waylandsink
