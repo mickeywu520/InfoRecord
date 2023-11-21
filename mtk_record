@@ -11,6 +11,8 @@ gst-launch-1.0 -v filesrc location=/home/ubuntu/test-h264.mp4 ! \
 parsebin ! v4l2h264dec ! \
 v4l2convert output-io-mode=5 ! waylandsink
 
+gst-launch-1.0 -v filesrc location=test_h264.mp4 ! parsebin ! v4l2h264dec ! v4l2convert output-io-mode=5 ! fpsdisplaysink video-sink=waylandsink text-overlay=false
+
 ============== additional information ==============
 If your h/w ROM is UFS, you need to use the canonical(Ubuntu) for UFS image.
 1. 需要跟ubuntu索取Ubuntu image for UFS(包含 Ubuntu.img及firmware.vfat)
