@@ -16,6 +16,15 @@ gst-launch-1.0 -v filesrc location=test_h264.mp4 ! parsebin ! v4l2h264dec ! v4l2
 Loop back
 gst-launch-1.0 -v multifilesrc location=TextInMotion-VideoSample-1080p.mp4 loop=true ! parsebin ! v4l2h264dec ! v4l2convert output-io-mode=5 ! video/x-raw,width=720,height=480 ! fpsdisplaysink video-sink=waylandsink text-overlay=true
 
+
+============== gstreamer play video occrued "moov" error ==============
+https://blog.csdn.net/ai2000ai/article/details/84835748
+
+FFmpeg github:
+https://github.com/FFmpeg/FFmpeg/tree/master/tools
+make tools/qt-faststart.c
+Usage: qt-faststart <infile.mov> <outfile.mov>
+
 ============== additional information ==============
 If your h/w ROM is UFS, you need to use the canonical(Ubuntu) for UFS image.
 1. 需要跟ubuntu索取Ubuntu image for UFS(包含 Ubuntu.img及firmware.vfat)
