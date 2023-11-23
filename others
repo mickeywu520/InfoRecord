@@ -66,4 +66,7 @@ gpio set GPIO5_20 1 - 設定GPIO輸出為high
 gpio clear GPIO5_20 - 設定GPIO輸出為low
 ======================================
 
+================ Test POST by MINGW64 ================
+curl -X 'POST' 'http://localhost:3090/api/hello2?name=aaaaaaaaaaaaa' -H 'accept: text/plain; charset=utf-8' -d ''
+
 
