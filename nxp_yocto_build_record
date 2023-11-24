@@ -134,6 +134,22 @@ https://www.csdn.net/tags/MtTaAg3sNTAyNzYwLWJsb2cO0O0O.html
 After compile success, change file as below path
 ./tmp/work/imx8mp_lpddr4_evk-poky-linux/u-boot-imx/2022.04-r0/git/board/freescale/imx8mp_evk/lpddr4_timing.c
 
+=================================== Change memory size ===================================
+/tmp/work/imx8mpevk-fsl-linux/u-boot-imx/2022.04-r0/git/include/configs/imx8mp_evk.h
+
+Ex:
+/* Totally 6GB DDR */
+#define CONFIG_SYS_SDRAM_BASE		0x40000000
+#define PHYS_SDRAM			0x40000000
+#define PHYS_SDRAM_SIZE			0xC0000000	/* 3 GB */
+#define PHYS_SDRAM_2			0x100000000
+#ifdef CONFIG_TARGET_IMX8MP_DDR4_EVK
+#define PHYS_SDRAM_2_SIZE		0x40000000	/* 1 GB */
+#else
+//#define PHYS_SDRAM_2_SIZE		0xC0000000	/* 3 GB */
+#define PHYS_SDRAM_2_SIZE		0x40000000	/* mickey, test 4G RAM, 1 GB */
+#endif
+
 
 =================================== DTS path ===================================
 /tmp/work/imx8mp_lpddr4_evk-poky-linux/u-boot-imx/2022.04-r0/git/arch/arm/dts/imx8mp-evk.dts
