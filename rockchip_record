@@ -11,3 +11,9 @@ device/rockchip/rk356x/BoardConfig.mk
 -PRODUCT_BOOT_DEVICE := fe310000.sdhci,fe330000.nandc
 +PRODUCT_BOOT_DEVICE := fe310000.sdhci,fe330000.nandc,fe2b0000.dwmmc
 ===========================================
+
+============== RK3566 android11 增加新的分区，恢复出厂数据不会清除 ==============
+https://blog.csdn.net/QliumengQ/article/details/126029994
+============== RK3568 Android/Linux 系统动态更换 U-Boot/Kernel Logo ==============
+https://blog.csdn.net/SHH_1064994894/article/details/132473026
+=================================================================================
