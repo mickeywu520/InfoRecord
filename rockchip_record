@@ -14,6 +14,8 @@ device/rockchip/rk356x/BoardConfig.mk
 
 ============== RK3566 android11 增加新的分区，恢复出厂数据不会清除 ==============
 https://blog.csdn.net/QliumengQ/article/details/126029994
+============== rk3399添加自定义分区 ==============
+https://blog.csdn.net/u013021855/article/details/124122719
 ============== RK3568 Android/Linux 系统动态更换 U-Boot/Kernel Logo ==============
 https://blog.csdn.net/SHH_1064994894/article/details/132473026
 =================================================================================
