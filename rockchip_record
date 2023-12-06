@@ -12,6 +12,8 @@ device/rockchip/rk356x/BoardConfig.mk
 +PRODUCT_BOOT_DEVICE := fe310000.sdhci,fe330000.nandc,fe2b0000.dwmmc
 ===========================================
 
+============== RK Android平台新建分区并挂载 ==============
+https://blog.csdn.net/weixin_43245753/article/details/123118982
 ============== RK3566 android11 增加新的分区，恢复出厂数据不会清除 ==============
 https://blog.csdn.net/QliumengQ/article/details/126029994
 ============== rk3399添加自定义分区 ==============
