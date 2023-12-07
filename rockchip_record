@@ -22,4 +22,34 @@ https://blog.csdn.net/u013021855/article/details/124122719
 https://blog.csdn.net/SHH_1064994894/article/details/132473026
 ============== rockchip Android平台动态替换开机logo的实现 ==============
 https://blog.csdn.net/weixin_43245753/article/details/125212221
+
+
+============== 更換boot logo注意事項 ==============
+透過windows小畫家修改的檔案, 屬性會跑掉, 可以用GIMP來修改.
+##### uboot logo
+mickey@ubuntu:/media/14t_disk/mickey_bsp/ROCKCHIP/rk392_android12/kernel-4.19$ mediainfo logo.bmp 
+General
+Complete name                            : logo.bmp
+Format                                   : Bitmap
+File size                                : 12.6 KiB
+
+Image
+Format                                   : RLE8
+Width                                    : 654 pixels
+Height                                   : 270 pixels
+Color space                              : RGB
+Bit depth                                : 8 bits
+##### kernel logo
+mickey@ubuntu:/media/14t_disk/mickey_bsp/ROCKCHIP/rk392_android12/kernel-4.19$ mediainfo logo_kernel.bmp 
+General
+Complete name                            : logo_kernel.bmp
+Format                                   : Bitmap
+File size                                : 21.8 KiB
+
+Image
+Format                                   : RLE8
+Width                                    : 654 pixels
+Height                                   : 270 pixels
+Color space                              : RGB
+Bit depth                                : 8 bits
 =================================================================================
