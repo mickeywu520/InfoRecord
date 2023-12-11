@@ -1,0 +1,273 @@
+From 892b3de86c26db45cc2d06ad5ef1cc162a429258 Mon Sep 17 00:00:00 2001
+From: mickey <mickey@arbor.com.tw>
+Date: Mon, 11 Dec 2023 14:45:01 +0800
+Subject: [PATCH 1/1] Add dynamic Uboot and Kernel logo function, which allows
+ users to change the logo.
+
+---
+ .../install/include/install/wipe_data.h       |  1 +
+ bootable/recovery/install/wipe_data.cpp       |  9 ++++++
+ bootable/recovery/recovery.cpp                |  1 +
+ .../common/scripts/fstab_tools/fstab.in       |  1 +
+ .../common/sepolicy/private/file_contexts     |  2 ++
+ .../sepolicy/private/untrusted_app_all.te     |  1 +
+ .../common/sepolicy/vendor/untrusted_app.te   |  1 +
+ .../sepolicy/vendor/untrusted_app_25.te       |  1 +
+ .../sepolicy/vendor/untrusted_app_27.te       |  1 +
+ .../sepolicy/vendor/untrusted_app_29.te       |  1 +
+ device/rockchip/rk3399/BoardConfig.mk         |  3 ++
+ .../rk3399/rk3399_Android12/recovery.fstab    |  1 +
+ system/core/rootdir/Android.mk                |  2 ++
+ system/core/rootdir/init.rc                   |  3 ++
+ u-boot/drivers/video/drm/rockchip_display.c   | 31 +++++++++++++++++++
+ 15 files changed, 59 insertions(+)
+
+diff --git a/bootable/recovery/install/include/install/wipe_data.h b/bootable/recovery/install/include/install/wipe_data.h
+index c177f59274..2f61f4c9b9 100644
+--- a/bootable/recovery/install/include/install/wipe_data.h
++++ b/bootable/recovery/install/include/install/wipe_data.h
+@@ -30,5 +30,6 @@ bool WipeCache(RecoveryUI* ui, const std::function<bool()>& confirm);
+ bool WipeData(Device* device, bool convert_fbe);
+ 
+ void SureMetadataMount();
++void SureLogoDirMount();
+ void WipeFrp();
+ int ResizeData(Device* device);
+diff --git a/bootable/recovery/install/wipe_data.cpp b/bootable/recovery/install/wipe_data.cpp
+index 1477dba52e..186db0f45b 100644
+--- a/bootable/recovery/install/wipe_data.cpp
++++ b/bootable/recovery/install/wipe_data.cpp
+@@ -36,6 +36,7 @@
+ constexpr const char* CACHE_ROOT = "/cache";
+ constexpr const char* DATA_ROOT = "/data";
+ constexpr const char* METADATA_ROOT = "/metadata";
++constexpr const char* LOGO_DIR_ROOT = "/logo_dir";
+ 
+ /**
+  * reset hdmi after restore factory.
+@@ -176,6 +177,14 @@ void SureMetadataMount() {
+     ensure_path_mounted(METADATA_ROOT);
+   }
+ }
++void SureLogoDirMount() {
++  if (ensure_path_mounted(LOGO_DIR_ROOT)) {
++    printf("mount private fail,so formate...\n");
++    reset_tmplog_offset();
++    format_volume(LOGO_DIR_ROOT);
++    ensure_path_mounted(LOGO_DIR_ROOT);
++  }
++}
+ void WipeFrp() {
+   printf("begin to wipe frp partion!\n");
+   int ret = format_volume("/frp");
+diff --git a/bootable/recovery/recovery.cpp b/bootable/recovery/recovery.cpp
+index ce98267f63..69dae7bf8e 100755
+--- a/bootable/recovery/recovery.cpp
++++ b/bootable/recovery/recovery.cpp
+@@ -1170,6 +1170,7 @@ Device::BuiltinAction start_recovery(Device* device, const std::vector<std::stri
+   device->StartRecovery();
+ 
+   SureMetadataMount();
++  SureLogoDirMount();
+ 
+   printf("Command:");
+   for (const auto& arg : args) {
+diff --git a/device/rockchip/common/scripts/fstab_tools/fstab.in b/device/rockchip/common/scripts/fstab_tools/fstab.in
+index 2ec6c26565..9cb2fc0b6b 100755
+--- a/device/rockchip/common/scripts/fstab_tools/fstab.in
++++ b/device/rockchip/common/scripts/fstab_tools/fstab.in
+@@ -10,6 +10,7 @@ ${_block_prefix}odm     /odm      ext4 ro,barrier=1 ${_flags},first_stage_mount
+ /dev/block/by-name/cache    /cache      ext4 noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard    wait,check
+ /dev/block/by-name/metadata /metadata   ext4 nodev,noatime,nosuid,discard,sync                          wait,formattable,first_stage_mount,check
+ /dev/block/by-name/misc     /misc       emmc defaults     defaults
++/dev/block/by-name/logo_dir    /logo_dir      ext4 noatime,nodiratime,nosuid,nodev,noauto_da_alloc,discard    wait,check
+ 
+ /devices/platform/*usb*   auto vfat defaults      voldmanaged=usb:auto
+ 
+diff --git a/device/rockchip/common/sepolicy/private/file_contexts b/device/rockchip/common/sepolicy/private/file_contexts
+index 4df1488331..d324b76a83 100644
+--- a/device/rockchip/common/sepolicy/private/file_contexts
++++ b/device/rockchip/common/sepolicy/private/file_contexts
+@@ -3,3 +3,5 @@
+ 
+ # All Rockchip configs
+ /data/misc/cfg_rockchip(/.*)?                   u:object_r:rockchip_config_data_file:s0
++# mkdir logo directly, mickey
++/logo_dir(/.*)?                u:object_r:cache_file:s0
+diff --git a/device/rockchip/common/sepolicy/private/untrusted_app_all.te b/device/rockchip/common/sepolicy/private/untrusted_app_all.te
+index 5d41ceb7ca..c8df24ac0c 100644
+--- a/device/rockchip/common/sepolicy/private/untrusted_app_all.te
++++ b/device/rockchip/common/sepolicy/private/untrusted_app_all.te
+@@ -1 +1,2 @@
+ allow untrusted_app_all self:perf_event { open read write kernel };
++allow untrusted_app_all unlabeled:dir { getattr search };
+diff --git a/device/rockchip/common/sepolicy/vendor/untrusted_app.te b/device/rockchip/common/sepolicy/vendor/untrusted_app.te
+index 3868f47ce7..1202a2aad4 100644
+--- a/device/rockchip/common/sepolicy/vendor/untrusted_app.te
++++ b/device/rockchip/common/sepolicy/vendor/untrusted_app.te
+@@ -3,6 +3,7 @@ allow untrusted_app  ota_data_file:dir rw_dir_perms;
+ allow untrusted_app  ota_data_file:file rw_file_perms;
+ allow untrusted_app  userdata_block_device:blk_file { getattr };
+ allow untrusted_app  oemfs:file {execmod};
++allow untrusted_app  unlabeled:dir { getattr search };
+ 
+ dontaudit untrusted_app mnt_vendor_file:dir { search };
+ 
+diff --git a/device/rockchip/common/sepolicy/vendor/untrusted_app_25.te b/device/rockchip/common/sepolicy/vendor/untrusted_app_25.te
+index e02ab716d9..33e149521d 100644
+--- a/device/rockchip/common/sepolicy/vendor/untrusted_app_25.te
++++ b/device/rockchip/common/sepolicy/vendor/untrusted_app_25.te
+@@ -10,5 +10,6 @@ allow untrusted_app_25 block_device:dir { getattr search };
+ allow untrusted_app_25 ota_data_file:dir rw_dir_perms;
+ allow untrusted_app_25 ota_data_file:file rw_file_perms;
+ allow untrusted_app_25 oemfs:file {execmod};
++allow untrusted_app_25 unlabeled:dir { getattr search };
+ 
+ rw_rockchip_graphic_device(untrusted_app_25)
+diff --git a/device/rockchip/common/sepolicy/vendor/untrusted_app_27.te b/device/rockchip/common/sepolicy/vendor/untrusted_app_27.te
+index e59143d254..fd7f0ccfc3 100644
+--- a/device/rockchip/common/sepolicy/vendor/untrusted_app_27.te
++++ b/device/rockchip/common/sepolicy/vendor/untrusted_app_27.te
+@@ -10,6 +10,7 @@ allow untrusted_app_27 block_device:dir { getattr search };
+ allow untrusted_app_27 ota_data_file:dir rw_dir_perms;
+ allow untrusted_app_27 ota_data_file:file rw_file_perms;
+ allow untrusted_app_27 oemfs:file {execmod};
++allow untrusted_app_27 unlabeled:dir { getattr search };
+ 
+ rw_rockchip_graphic_device(untrusted_app_27)
+ binder_call(untrusted_app_27, zygote)
+diff --git a/device/rockchip/common/sepolicy/vendor/untrusted_app_29.te b/device/rockchip/common/sepolicy/vendor/untrusted_app_29.te
+index e76df6566f..4030c87c44 100644
+--- a/device/rockchip/common/sepolicy/vendor/untrusted_app_29.te
++++ b/device/rockchip/common/sepolicy/vendor/untrusted_app_29.te
+@@ -1,2 +1,3 @@
+ #allow untrusted_app_29 trace_data_file:dir getattr;
++allow untrusted_app_29 unlabeled:dir { getattr search };
+ rw_rockchip_graphic_device(untrusted_app_29)
+diff --git a/device/rockchip/rk3399/BoardConfig.mk b/device/rockchip/rk3399/BoardConfig.mk
+index 2af095b892..19954186e5 100755
+--- a/device/rockchip/rk3399/BoardConfig.mk
++++ b/device/rockchip/rk3399/BoardConfig.mk
+@@ -139,6 +139,9 @@ BOARD_HS_ETHERNET := true
+ BOARD_HS_DYNAMIC_AFBC_TARGET := false
+ TARGET_RK_GRALLOC_VERSION := 4
+ 
++# mkdir logo directly, mickey
++BOARD_WITH_SPECIAL_PARTITIONS := logo_dir:16M
++
+ # Allow deprecated BUILD_ module types to get DDK building
+ BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+ BUILD_BROKEN_USES_BUILD_HOST_EXECUTABLE := true
+diff --git a/device/rockchip/rk3399/rk3399_Android12/recovery.fstab b/device/rockchip/rk3399/rk3399_Android12/recovery.fstab
+index f8c69ad2fc..72ca794393 100755
+--- a/device/rockchip/rk3399/rk3399_Android12/recovery.fstab
++++ b/device/rockchip/rk3399/rk3399_Android12/recovery.fstab
+@@ -10,6 +10,7 @@
+ /dev/block/by-name/vendor_dlkm            /vendor_dlkm          ext4             defaults                  defaults
+ /dev/block/by-name/odm_dlkm            /odm_dlkm          ext4             defaults                  defaults
+ /dev/block/by-name/cache                 /cache               ext4             defaults                  defaults
++/dev/block/by-name/logo_dir                 /logo_dir               ext4             defaults                  defaults
+ /dev/block/by-name/metadata              /metadata            ext4             defaults                  defaults
+ /dev/block/by-name/userdata              /data                f2fs             defaults                  defaults
+ /dev/block/by-name/cust                  /cust                ext4             defaults                  defaults
+diff --git a/system/core/rootdir/Android.mk b/system/core/rootdir/Android.mk
+index 99d8f9a834..caace8d036 100644
+--- a/system/core/rootdir/Android.mk
++++ b/system/core/rootdir/Android.mk
+@@ -149,6 +149,8 @@ LOCAL_POST_INSTALL_CMD += ; mkdir -p $(TARGET_ROOT_OUT)/odm_dlkm
+ # via /odm/lib/modules directly.
+ LOCAL_POST_INSTALL_CMD += ; ln -sf /odm/odm_dlkm/etc $(TARGET_ROOT_OUT)/odm_dlkm/etc
+ 
++# mkdir logo directly, mickey
++LOCAL_POST_INSTALL_CMD += ; mkdir -p $(TARGET_ROOT_OUT)/logo_dir
+ ifdef BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE
+   LOCAL_POST_INSTALL_CMD += ; mkdir -p $(TARGET_ROOT_OUT)/cache
+ else
+diff --git a/system/core/rootdir/init.rc b/system/core/rootdir/init.rc
+index dfd90a1642..87b839c707 100644
+--- a/system/core/rootdir/init.rc
++++ b/system/core/rootdir/init.rc
+@@ -1013,6 +1013,9 @@ on post-fs-data
+     # Enable FUSE by default
+     setprop persist.sys.fuse true
+ 
++    # Set logo_dir as 777, mickey
++    chmod 0777 /logo_dir
++
+ # It is recommended to put unnecessary data/ initialization from post-fs-data
+ # to start-zygote in device's init.rc to unblock zygote start.
+ on zygote-start && property:ro.crypto.state=unencrypted
+diff --git a/u-boot/drivers/video/drm/rockchip_display.c b/u-boot/drivers/video/drm/rockchip_display.c
+index 2dc3a43481..1c2fc8b7da 100644
+--- a/u-boot/drivers/video/drm/rockchip_display.c
++++ b/u-boot/drivers/video/drm/rockchip_display.c
+@@ -1309,10 +1309,12 @@ static int load_kernel_bmp_logo(struct logo_info *logo, const char *bmp_name)
+ 
+ static int load_bmp_logo(struct logo_info *logo, const char *bmp_name)
+ {
++#define BUFFER_SIZE 128
+ #ifdef CONFIG_ROCKCHIP_RESOURCE_IMAGE
+ 	struct rockchip_logo_cache *logo_cache;
+ 	struct bmp_header *header;
+ 	void *dst = NULL, *pdst;
++	char cmd[BUFFER_SIZE] = {"0"};
+ 	int size, len;
+ 	int ret = 0;
+ 	int reserved = 0;
+@@ -1333,11 +1335,25 @@ static int load_bmp_logo(struct logo_info *logo, const char *bmp_name)
+ 	if (!header)
+ 		return -ENOMEM;
+ 
++	/* org code, mickey
+ 	len = rockchip_read_resource_file(header, bmp_name, 0, RK_BLK_SIZE);
+ 	if (len != RK_BLK_SIZE) {
+ 		ret = -EINVAL;
+ 		goto free_header;
+ 	}
++	*/
++
++	// loading the boot logo from mmcblk2p12, mickey
++	sprintf(cmd, "ext4load mmc 0:c 0x%p %s %x", header,bmp_name, RK_BLK_SIZE);
++	printf("load_bmp_logo try to load bmp from MMC %s...\n", bmp_name);
++	if(run_command(cmd, 0)){
++		len = rockchip_read_resource_file(header, bmp_name, 0, RK_BLK_SIZE);
++		if (len != RK_BLK_SIZE) {
++			printf("load_bmp_logo loading from resource %s failed!!!\n", bmp_name);
++			ret = -EINVAL;
++			goto free_header;
++		}
++	}
+ 
+ 	logo->bpp = get_unaligned_le16(&header->bit_count);
+ 	logo->width = get_unaligned_le32(&header->width);
+@@ -1360,12 +1376,27 @@ static int load_bmp_logo(struct logo_info *logo, const char *bmp_name)
+ 		dst = pdst;
+ 	}
+ 
++	/* org code, mickey
+ 	len = rockchip_read_resource_file(pdst, bmp_name, 0, size);
+ 	if (len != size) {
+ 		printf("failed to load bmp %s\n", bmp_name);
+ 		ret = -ENOENT;
+ 		goto free_header;
+ 	}
++	*/
++
++	// loading the boot logo from mmcblk2p12, mickey
++	memset(cmd, 0, BUFFER_SIZE);
++	sprintf(cmd, "ext4load mmc 0:c 0x%p %s %x", pdst, bmp_name, size);
++	if(run_command(cmd, 0)){
++		len = rockchip_read_resource_file(pdst, bmp_name, 0, size);
++		if (len != size) {
++			printf("load_bmp_logo loading bmp %s failed!!!\n", bmp_name);
++			printf("failed to load bmp %s\n", bmp_name);
++			ret = -ENOENT;
++			goto free_header;
++		}
++	}
+ 
+ 	if (!can_direct_logo(logo->bpp)) {
+ 		/*
+-- 
+2.25.1
+
