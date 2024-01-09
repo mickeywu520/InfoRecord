@@ -14,6 +14,9 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'no
 
 # Disable autosuspend when on battery power
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+
+# Using below cmmand to disable menu
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 =============================================================
 # [Ubuntu 22.04] IPV6 SLAAC with NetworkManager
 
