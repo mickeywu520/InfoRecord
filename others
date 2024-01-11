@@ -75,4 +75,21 @@ curl -X 'POST' 'http://localhost:3090/api/hello2?name=aaaaaaaaaaaaa' -H 'accept:
 ================ OSCP备忘单示例 Example Cheat Sheet ================
 https://www.ddosi.org/oscp-cheat-sheet-2/
 
+================ Wake Your Linux PC From Suspend With a USB Mouse or Keyboard ================
+1. find out your USB "device ID"
+  Ex: $ lsusb
+  show: Bus 001 Device 006: ID 0000:3825 USB OPTICAL MOUSE
+2. find out the device node
+  grep "device ID" /sys/bus/usb/devices/*/idProduct
+  Ex: $ grep 3825 /sys/bus/usb/devices/*/idProduct
+  Show: /sys/bus/devices/1-1/idProduct:3825
+3. find out the wakeup value
+  Ex: $ cat /sys/bus/devices/1-1/power/wakeup
+  Show: disabled
+4. Set wakeup to Enable
+  Ex: sudo echo enabled > /sys/bus/usb/devices/1-1/power/wakeup
+# Refer
+https://www.makeuseof.com/wake-your-linux-pc-from-suspend-using-usb-devices/
+
+
 
