@@ -67,6 +67,12 @@ gpio status -a - List所有GPIO
 gpio toggle GPIO5_20 - 更換GPIO方向
 gpio set GPIO5_20 1 - 設定GPIO輸出為high
 gpio clear GPIO5_20 - 設定GPIO輸出為low
+
+[gpio command in uboot]
+https://docs.u-boot.org/en/latest/usage/cmd/gpio.html
+
+if no gpio command in uboot, please enable below flag
+CONFIG_CMD_GPIO=y
 ======================================
 
 ================ Test POST by MINGW64 ================
