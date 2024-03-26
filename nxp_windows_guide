@@ -1,2 +1,65 @@
 ### Download Windows IoT relate source
 https://www.nxp.com/design/design-center/software/embedded-software/i-mx-software/windows-10-iot-enterprise-for-i-mx-applications-processors:IMXWIN10IOT
+
+### Download required tools and drivers
+• git
+  winget install --id Git.Git -e --source winget
+
+• git-lfs
+  https://git-lfs.com/
+
+• software to unpack zip, gzip, and tar archives
+  7zip
+
+• Visual Studio 2019
+  https://learn.microsoft.com/en-us/windows-hardware/drivers/other-wdk-downloads#step-1-install-visual-studio
+  – MSVC v142 - VS 2019 C++ ARM64 Spectre-mitigated libs (16.11)
+    ### (Must)  Select the "Individual components" tab
+                Type in the search box: Libs for Spectre
+                Select: MSVC v142 - VS 2019 C++ ARM64 Spectre-mitigated libs (16.11 or Latest) (Important: there should be the word "Latest" at the end) 
+  – MSVC v142 - VS 2019 C++ ARM64 build tools (16.11)
+  – Windows 10 SDK (10.0.19041.0)
+
+• Windows Kits (ADK/SDK/WDK)
+  # ADK
+  https://learn.microsoft.com/zh-tw/windows-hardware/get-started/adk-install?source=recommendations#other-adk-downloads
+  # WDK
+  https://learn.microsoft.com/en-us/windows-hardware/drivers/other-wdk-downloads
+  # SDK
+  ### If install the Visual Studio 2019, can ignore this step
+  https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/
+
+### Download the source from NXP official web
+Download from xxxxxxxxxxxxxxxxxxxxxxxx
+
+• Extra the BSP zip file
+  # execute the init.bat
+
+
+### One-time environment setup
+To generate driver packages on a development machine, install test certificates.
+1. Open an Administrator Command Prompt.
+2. Navigate to your BSP, the folder imx-windows-iot\build\tools.
+3. Launch StartBuildEnv.bat.
+4. Run SetupCertificate.bat to install the test certificates.
+5. The HAL Extensions must be signed by certificates provided by Microsoft. The required certificates that are
+included in WDK have expired. Download the Windows 11, version 22H2 EWDK and use the “Windows
+OEM HAL Extension Test Cert 2017 \(TEST ONLY\)” and “Windows OEM Intermediate 2017 \(TEST ONLY
+\)” found in the EWDK.iso file or contact Microsoft for help.
+Some tools may not work correctly if LongPath is not enabled, therefore run the following command in the
+Execute command: 
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1
+
+### Building the drivers
+
+
+
+
+
+
+
+
+
+
+
+
