@@ -52,6 +52,8 @@ reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPa
 
 ### Building the drivers
 
+### Windows 10 iot ARM64 
+https://www.youtube.com/watch?v=mDbfaneYy8Y
 
 
 
