@@ -11,3 +11,9 @@ mkdir machine
 weston.ini
 /etc/xdg/weston/weston.ini
 idle-time=0
+
+============ How to add patch in bb file ============
+1. in your recipes folder create a folder names "files"
+2. put your patch file (xxxxx.patch) into "files" folder
+3. add SRC_URI:append += " xxxxx.patch "
+4. rebuild your recipes
