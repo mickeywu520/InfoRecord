@@ -5,6 +5,8 @@ CAN1="can1"
 CAN0_STATE=""
 CAN1_STATE=""
 
+sudo apt install can-tools
+
 canState() {
   CAN0_STATE="$(cat /sys/class/net/can0/operstate)"
   CAN1_STATE="$(cat /sys/class/net/can1/operstate)"
@@ -19,7 +21,7 @@ canUp() {
 }
 
 startUpCanDump() {
-    gnome-terminal -- bash -c "candump -a $CAN1"
+    gnome-terminal --title="CAN1 RECE:" --geometry 35x20 -- bash -c "candump -a $CAN1"
 }
 
 sendCanMsg() {
