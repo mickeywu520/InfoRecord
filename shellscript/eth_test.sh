@@ -38,12 +38,12 @@ while true; do
     sleep 1
 done
 
+# start a new terminal to ping from eth1 to eth0
+startEth1Ping
+
 # add eth0 and eth1 route
 sudo ip -6 route add "$ETH0_IPV6/128" dev eth0
 sudo ip -6 route add "$ETH1_IPV6/128" dev eth1
 
 # from eth0 ping eth1 IPv6 addr
 ping6 "$ETH1_IPV6" -I eth0
-
-# start a new terminal to ping from eth1 to eth0
-startEth1Ping
