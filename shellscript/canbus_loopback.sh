@@ -5,7 +5,7 @@ CAN1="can1"
 CAN0_STATE=""
 CAN1_STATE=""
 
-sudo apt install can-tools
+sudo apt install can-utils
 
 canState() {
   CAN0_STATE="$(cat /sys/class/net/can0/operstate)"
