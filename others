@@ -105,3 +105,9 @@ https://bbs.elecfans.com/jishu_2280127_1_1.html
 ================ Jenkins-Android源码编译【架构设计】（适用鸿蒙/自动化/多产品/持续迭代）================
 https://blog.csdn.net/dengtonglong/article/details/136512728
 
+================ Anydesk cannot unlock security(ubuntu 22.04) ================
+sudo vi /etc/gdm3/custom.conf
+[daemon]
+Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=false
+
