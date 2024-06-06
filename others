@@ -111,3 +111,5 @@ sudo vi /etc/gdm3/custom.conf
 Uncomment the line below to force the login screen to use Xorg
 WaylandEnable=false
 
+================ RK356x & RK3399 Android 12 GMS ================
+https://blog.csdn.net/qq_46524402/article/details/132018105
