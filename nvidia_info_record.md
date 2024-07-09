@@ -1,5 +1,6 @@
 # install jtop utils
 ## https://hackmd.io/@YungHuiHsu/H1kx5WdJn
+ - sudo apt-get install python3-pip
  - sudo pip3 install -U jetson-stats
 
 
@@ -7,6 +8,9 @@
 ## https://forums.developer.nvidia.com/t/cuda-nvcc-not-found/118068
  - $ export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
  - $ export LD_LIBRARY_PATH=/usr/local/cuda/lib64/${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+## if cuda not install
+ - $ sudo apt update
+ - $ sudo apt install nvidia-jetpack
 
 # nvOCDR
 ## https://github.com/NVIDIA-AI-IOT/NVIDIA-Optical-Character-Detection-and-Recognition-Solution
