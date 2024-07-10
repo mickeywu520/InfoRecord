@@ -23,6 +23,14 @@
  - cd NVIDIA-Optical-Character-Detection-and-Recognition-Solution
  - make
  - export LD_LIBRARY_PATH=$(pwd)
+# Compile TensorRT libnvinfer_plugin.so 
+ ### (if CUDA version not compatible, which need to rebuild the libnvinfer_plugin.so)
+ - mkdir build && cd build
+ - ### On X86 platform
+ - cmake .. 
+ - ### On Jetson platform
+ - cmake .. -DTRT_LIB_DIR=/usr/lib/aarch64-linux-gnu/
+ - make nvinfer_plugin -j4
 
 # Jetson Orin Nx CLB 开发套件上的 Qt 部署安装
 ## https://blog.csdn.net/u014597198/article/details/135688224
