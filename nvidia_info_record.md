@@ -31,6 +31,11 @@
  - ### On Jetson platform
  - cmake .. -DTRT_LIB_DIR=/usr/lib/aarch64-linux-gnu/
  - make nvinfer_plugin -j4
+# Copy the libnvinfer_plugin.so to the system library path
+ - ### On X86 platform
+ - cp libnvinfer_plugin.so.8.6.0 /usr/lib/x86_64-linux-gnu/libnvinfer_plugin.so.8.5.1
+ - ### On Jetson platform:
+ - cp libnvinfer_plugin.so.8.6.x /usr/lib/aarch64-linux-gnu/libnvinfer_plugin.so.8.5.2
 
 # Jetson Orin Nx CLB 开发套件上的 Qt 部署安装
 ## https://blog.csdn.net/u014597198/article/details/135688224
