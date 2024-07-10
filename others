@@ -124,4 +124,8 @@ Port number: 998
 FTP account: arborbu5
 FTP password: c867e9cd
 
+# Virtual box 7.0 cannot open terminal
+ - changed the line of /etc/default/locale file to LANG=en_US.UTF-8 and rebooted.
+ - If you dont have privilleges to change it, you can Alt+F2 and write gedit admin:/etc/default/locale
+
 
