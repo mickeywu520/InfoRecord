@@ -16,6 +16,8 @@
 ## https://github.com/NVIDIA-AI-IOT/NVIDIA-Optical-Character-Detection-and-Recognition-Solution
  - if wanna open video need to link: -lopencv_videoio -lopencv_imgproc -lopencv_highgui
  - $ g++ ./video_test.cpp -I../include -L../ -I/usr/include/opencv4/ -I/usr/local/cuda/include -L/usr/local/cuda/lib64 -lcudart -lopencv_core -lopencv_imgcodecs -lopencv_videoio -lopencv_imgproc -lopencv_highgui -lnvocdr -o video_test
+ - ### test sample drag5.cpp
+ - $ sudo apt install libxcomposite-dev
  - $ g++ ./drag5.cpp -I../include -L../ -I/usr/include/opencv4/ -I/usr/local/cuda/include -L/usr/local/cuda/lib64 -lX11 -lXcomposite -lXrender -lcudart -lopencv_core -lopencv_imgcodecs -lopencv_videoio -lopencv_imgproc -lopencv_highgui -lnvocdr -pthread -o drag5.out
 # Compile the libnvocdr.so:
  - cd NVIDIA-Optical-Character-Detection-and-Recognition-Solution
