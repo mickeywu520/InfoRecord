@@ -40,5 +40,8 @@
 # Jetson Orin Nx CLB 开发套件上的 Qt 部署安装
 ## https://blog.csdn.net/u014597198/article/details/135688224
 
+# Nvidia Jetson developer guide fourm(r36.3)
+## https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/
+
 # Nvidia Jetson Orin Kernel Customization 
 ## https://docs.nvidia.com/jetson/archives/r35.4.1/DeveloperGuide/text/SD/Kernel/KernelCustomization.html
