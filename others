@@ -128,4 +128,5 @@ FTP password: c867e9cd
  - changed the line of /etc/default/locale file to LANG=en_US.UTF-8 and rebooted.
  - If you dont have privilleges to change it, you can Alt+F2 and write gedit admin:/etc/default/locale
 
-
+# ESXi Download
+https://support.broadcom.com/group/ecx/downloads
