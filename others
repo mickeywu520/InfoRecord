@@ -135,3 +135,6 @@ https://support.broadcom.com/group/ecx/downloads
 帳號: HQPS@arbor.com.tw
 密碼: ArborFAE999
 
+# fdisk
+After fdisk new partition, don't forget to resise2fs the new partition to marge the /dev/root
+Ex: resize2fs /dev/mmcblk0p2
