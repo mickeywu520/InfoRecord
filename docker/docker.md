@@ -50,3 +50,18 @@ docker run -it --rm --privileged -v "PC_Host_Src_folder":"Container_target_mappi
   ```
   docker run -it --rm --privileged -v /media/14t_disk/mickey_bsp/ROCKCHIP/PX30_chipset/android/iot800n:/home/px30/source px30_build_env:v1
   ```
+
+## Save the docker image to tar
+```
+docker save -o "YOU WANNA SAVE NAME".tar "REPO:TAG"
+```
+ - Ex:
+   ```
+   docker save -o px30_build_env_v1.tar px30_build_env:v1
+   ```
+ - Explain: the docker image will save in current path
+
+## Load docker image
+```
+docker load -i px30_build_env_v1.tar
+```
