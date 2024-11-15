@@ -20,7 +20,7 @@ docker build -f Dockerfile .
 ```
 docker images
 ```
-## or
+```or```
 ```
 docker image ls
 ```
@@ -34,27 +34,25 @@ hello-world      latest    feb5d9fea6a5   3 years ago   13.3kB
 ```
 
 ## Run the docker
-```
-docker run -it --rm "IMAGE ID" or "Repo:TAG"
-```
+```docker run -it --rm "IMAGE ID" or "Repo:TAG"```
 - Ex:
   ```
   docker run -it --rm 8a6e80273916
   ```
+  ```or```
+  ```
+  docker run -it --rm px30_build_env:v1
+  ```
 
 ## mapping the local Src folder
-```
-docker run -it --rm --privileged -v "PC_Host_Src_folder":"Container_target_mapping_folder" 
-```
+``` docker run -it --rm --privileged -v "PC_Host_Src_folder":"Container_target_mapping_folder" ```
  - Ex:
   ```
   docker run -it --rm --privileged -v /media/14t_disk/mickey_bsp/ROCKCHIP/PX30_chipset/android/iot800n:/home/px30/source px30_build_env:v1
   ```
 
 ## Save the docker image to tar
-```
-docker save -o "YOU WANNA SAVE NAME".tar "REPO:TAG"
-```
+``` docker save -o "YOU WANNA SAVE NAME".tar "REPO:TAG" ```
  - Ex:
    ```
    docker save -o px30_build_env_v1.tar px30_build_env:v1
@@ -65,3 +63,13 @@ docker save -o "YOU WANNA SAVE NAME".tar "REPO:TAG"
 ```
 docker load -i px30_build_env_v1.tar
 ```
+
+## FAQ
+```USER: unbound variable```
+- Reslove：
+```
+export USER=$(whoami)
+```
+
+## Ref
+https://lixiaogang03.github.io/2020/11/08/Docker-Android/
