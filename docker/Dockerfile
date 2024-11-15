@@ -48,6 +48,6 @@ RUN echo "User: android Pass: $MYPASS" && \
  chmod 0440 /etc/sudoers.d/${USER}
 
 USER $MYNAME
-RUN export USER=$(whoami)
+ENV USER $MYNAME
 
 #ENTRYPOINT chroot --userspec=$(cat /root/username):$(cat /root/username) / /bin/bash -i
