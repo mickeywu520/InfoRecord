@@ -47,7 +47,7 @@ RUN echo "User: android Pass: $MYPASS" && \
  echo "${MYNAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${MYNAME} && \
  chmod 0440 /etc/sudoers.d/${USER}
 
-
 USER $MYNAME
+RUN export USER=$(whoami)
 
 #ENTRYPOINT chroot --userspec=$(cat /root/username):$(cat /root/username) / /bin/bash -i
