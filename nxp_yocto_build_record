@@ -816,8 +816,14 @@ finished libwebsockets test.
 
 
 =============== local package server ===============
-https://imxdev.gitlab.io/tutorial/How_to_apt-get_to_the_Yocto_Project_image/
-
+1. https://imxdev.gitlab.io/tutorial/How_to_apt-get_to_the_Yocto_Project_image/
+2. if local machine have no sources.list, please make it.
+3. add contents like below:
+   - deb [trusted=yes] http://192.168.0.73:8000/all ./
+4. sudo apt update
+5. Error Msg:
+	E: Release file for http://192.168.0.73:8000/all/./Release is not valid yet (invalid for another 294d 7h 46min 40s). Updates for this
+   >>>> Make sure the local and server date/time
 
 
 =============== USB hub power rejection ===============
