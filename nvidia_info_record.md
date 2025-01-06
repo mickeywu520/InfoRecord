@@ -45,3 +45,6 @@
 
 # Nvidia Jetson Orin Kernel Customization 
 ## https://docs.nvidia.com/jetson/archives/r35.4.1/DeveloperGuide/text/SD/Kernel/KernelCustomization.html
+
+# Get Jetson l4t / chip / id
+## head -1 /etc/nv_tegra_release
