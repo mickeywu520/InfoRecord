@@ -4,7 +4,7 @@ info:
   version: v1
 
 servers:
-  - url: http://api.weatherapi.com?key=652dedc2442049dca7295514250701&q=Taipe
+  - url: http://api.weatherapi.com/v1/current.json?key=652dedc2442049dca7295514250701&q=Taipei
 
 paths:
   /current.json:
