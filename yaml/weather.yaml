@@ -1,10 +1,143 @@
----
-id: Weather_API
-schema_version: v1
-name_for_human: Weather_API
-name_for_model: Weather_API
-description_for_human: Weather_API
-description_for_model: 當你需要查詢未來天氣的相關資料, 請使用這個API, 並且整理相關資訊以表格輸出
-api:
-  type: openapi
-  url: http://api.weatherapi.com/v1/current.json?key=652dedc2442049dca7295514250701&q=Taipei
+openapi: 3.0.0
+info:
+  title: 天氣 API
+  version: v1
+
+paths:
+  /weather:
+    get:
+      summary: 獲取台北市目前的天氣資訊
+      description: 調用 http://api.weatherapi.com/v1/current.json?key=652dedc2442049dca7295514250701&q=Taipei 獲取天氣資訊
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: 城市名稱
+                      region:
+                        type: string
+                        description: 地區
+                      country:
+                        type: string
+                        description: 國家
+                      lat:
+                        type: number
+                        format: float
+                        description: 緯度
+                      lon:
+                        type: number
+                        format: float
+                        description: 經度
+                      tz_id:
+                        type: string
+                        description: 時區 ID
+                      localtime_epoch:
+                        type: integer
+                        description: 當地時間的時間戳
+                      localtime:
+                        type: string
+                        description: 當地時間
+                  current:
+                    type: object
+                    properties:
+                      last_updated_epoch:
+                        type: integer
+                        description: 最後更新時間的時間戳
+                      last_updated:
+                        type: string
+                        description: 最後更新時間
+                      temp_c:
+                        type: number
+                        format: float
+                        description: 攝氏溫度
+                      temp_f:
+                        type: number
+                        format: float
+                        description: 華氏溫度
+                      is_day:
+                        type: integer
+                        description: 是否為白天 (1 是, 0 否)
+                      condition:
+                        type: object
+                        properties:
+                          text:
+                            type: string
+                            description: 天氣狀況描述
+                          icon:
+                            type: string
+                            description: 天氣狀況圖示 URL
+                          code:
+                            type: integer
+                            description: 天氣狀況代碼
+                      wind_mph:
+                        type: number
+                        format: float
+                        description: 風速 (英里/小時)
+                      wind_kph:
+                        type: number
+                        format: float
+                        description: 風速 (公里/小時)
+                      wind_degree:
+                        type: integer
+                        description: 風向角度
+                      wind_dir:
+                        type: string
+                        description: 風向
+                      pressure_mb:
+                        type: number
+                        format: float
+                        description: 氣壓 (百帕)
+                      pressure_in:
+                        type: number
+                        format: float
+                        description: 氣壓 (英寸)
+                      precip_mm:
+                        type: number
+                        format: float
+                        description: 降水量 (毫米)
+                      precip_in:
+                        type: number
+                        format: float
+                        description: 降水量 (英寸)
+                      humidity:
+                        type: integer
+                        description: 濕度
+                      cloud:
+                        type: integer
+                        description: 雲量
+                      feelslike_c:
+                        type: number
+                        format: float
+                        description: 體感溫度 (攝氏)
+                      feelslike_f:
+                        type: number
+                        format: float
+                        description: 體感溫度 (華氏)
+                      vis_km:
+                        type: number
+                        format: float
+                        description: 能見度 (公里)
+                      vis_miles:
+                        type: number
+                        format: float
+                        description: 能見度 (英里)
+                      uv:
+                        type: number
+                        format: float
+                        description: 紫外線指數
+                      gust_mph:
+                        type: number
+                        format: float
+                        description: 陣風風速 (英里/小時)
+                      gust_kph:
+                        type: number
+                        format: float
+                        description: 陣風風速 (公里/小時)
