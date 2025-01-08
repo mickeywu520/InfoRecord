@@ -1,12 +1,10 @@
-{
-  "id": "Weather_API",
-  "schema_version": "v1",
-  "name_for_human": "Weather_API",
-  "name_for_model": "Weather_API",
-  "description_for_human": "Weather_API",
-  "description_for_model": "當你需要查詢未來天氣的相關資料, 請使用這個API, 並且整理相關資訊以表格輸出",
-  "api": {
-    "type": "openapi",
-    "url": "http://api.weatherapi.com/v1/current.json?key=652dedc2442049dca7295514250701&q=Taipei"
-  }
-}
+---
+id: Weather_API
+schema_version: v1
+name_for_human: Weather_API
+name_for_model: Weather_API
+description_for_human: Weather_API
+description_for_model: 當你需要查詢未來天氣的相關資料, 請使用這個API, 並且整理相關資訊以表格輸出
+api:
+  type: openapi
+  url: http://api.weatherapi.com/v1/current.json?key=652dedc2442049dca7295514250701&q=Taipei
