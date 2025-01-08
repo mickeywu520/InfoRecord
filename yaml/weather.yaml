@@ -3,11 +3,27 @@ info:
   title: 天氣 API
   version: v1
 
+servers:
+  - url: http://api.weatherapi.com/v1
+
 paths:
-  /weather:
+  /current.json:
     get:
       summary: 獲取台北市目前的天氣資訊
       description: 調用 http://api.weatherapi.com/v1/current.json?key=652dedc2442049dca7295514250701&q=Taipei 獲取天氣資訊
+      parameters:
+        - in: query
+          name: key
+          schema:
+            type: string
+          required: true
+          description: Weather API 金鑰
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: true
+          description: 城市名稱
       responses:
         '200':
           description: 成功
