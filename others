@@ -193,4 +193,16 @@ sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-6
 
+nano ~/.bashrc
+# paste the following lines at the end of the file.
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.6/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+. ~/.bashrc
+nvcc -V
+
+refer:
+https://www.cherryservers.com/blog/install-cuda-ubuntu
+======================================
 
