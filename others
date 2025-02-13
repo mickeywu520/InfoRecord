@@ -138,3 +138,30 @@ https://support.broadcom.com/group/ecx/downloads
 # fdisk
 After fdisk new partition, don't forget to resise2fs the new partition to marge the /dev/root
 Ex: resize2fs /dev/mmcblk0p2
+
+================ x86 ubuntu 22.04 install rtx3070] ================
+# 
+sudo apt update
+sudo apt install ubuntu-drivers-common
+sudo ubuntu-drivers devices
+Ex:
+$ sudo ubuntu-drivers devices
+== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd00002484sv0000107Dsd00002791bc03sc00i00
+vendor   : NVIDIA Corporation
+model    : GA104 [GeForce RTX 3070]
+driver   : nvidia-driver-535-server-open - distro non-free
+driver   : nvidia-driver-470-server - distro non-free
+driver   : nvidia-driver-545 - distro non-free
+driver   : nvidia-driver-535 - distro non-free
+driver   : nvidia-driver-535-server - distro non-free
+driver   : nvidia-driver-535-open - distro non-free
+driver   : nvidia-driver-550-open - distro non-free recommended
+driver   : nvidia-driver-550 - distro non-free
+driver   : nvidia-driver-545-open - distro non-free
+driver   : nvidia-driver-470 - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+sudo apt install nvidia-driver-550-open
+
+
+
