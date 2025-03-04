@@ -24,7 +24,7 @@ ultralytics.checks()
 !pip install roboflow
 
 from roboflow import Roboflow
-rf = Roboflow(api_key="n3477NCSk2eamtW3rhzl")
+rf = Roboflow(api_key="----your API key----")
 project = rf.workspace("diplom-qz7q6").project("defects-2q87r")
 version = project.version(16)
 dataset = version.download("yolov8")
