@@ -25,8 +25,15 @@ cd llama.cpp
 cmake -B build -DGGML_CUDA=ON
 cmake --build build --config Release
 ```
-
+## 編譯完成, 運行llama-cli
+```
+cd build/bin
+./llama-cli -m "your download gguf model" -ngl 25
+```
+## ngl 最高層數訊息
+### load_tensors: offloaded 25/25 layers to GPU
 
 ### 參考文獻
+#### https://hyd.ai/2025/03/07/llamacpp-on-jetson-orin-agx/
 #### https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
 #### https://medium.com/@EricChou711/nvidia-jetson-orin-nano-%E6%89%8B%E6%8A%8A%E6%89%8B%E5%AE%8C%E6%95%B4%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8-pytorch-tensorflow-opencv-cuda%E7%89%88%E6%9C%AC-683271bfaa42
