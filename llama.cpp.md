@@ -25,13 +25,33 @@ cd llama.cpp
 cmake -B build -DGGML_CUDA=ON
 cmake --build build --config Release
 ```
+## 開啟 RPC 支援
+```
+cmake -B build -DGGML_CUDA=ON -DLLAMA_RPC=ON
+cmake --build build --config Release
+```
 ## 編譯完成, 運行llama-cli
 ```
 cd build/bin
 ./llama-cli -m "your download gguf model" -ngl 25
 ```
-## ngl 最高層數訊息
-### load_tensors: offloaded 25/25 layers to GPU
+## ngl 最高層數訊息: load_tensors: offloaded 25/25 layers to GPU
+
+## llama-server
+```
+./llama-server -m "model.gguf" -ngl 25 --host 0.0.0.0
+```
+## RPC server, 需要編譯支援RPC的執行檔
+```
+mkdir build-rpc-cuda
+cd build-rpc-cuda
+cmake .. -DGGML_CUDA=ON -DGGML_RPC=ON
+cmake --build . --config Release
+```
+## 啟動 RPC server
+```
+./rpc-server -p 50052
+```
 
 ### 參考文獻
 #### https://hyd.ai/2025/03/07/llamacpp-on-jetson-orin-agx/
