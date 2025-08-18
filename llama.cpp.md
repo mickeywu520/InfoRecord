@@ -52,6 +52,16 @@ cmake --build . --config Release
 ```
 ./rpc-server -p 50052
 ```
+## 如果執行 rpc-server 遇到下方錯誤
+## ./rpc-server ./rpc-server: error while loading shared libraries: libggml.so: cannot open shared object file: No such file or directory
+```
+export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+./rpc-server -p 50052 --host 0.0.0.0
+```
+## 運行本地模型加上 RPC 功能
+```
+./llama-server -m "model.gguf" --host 0.0.0.0 --rpc 192.168.213.116:50052 -ngl 25
+```
 
 ### 參考文獻
 #### https://hyd.ai/2025/03/07/llamacpp-on-jetson-orin-agx/
