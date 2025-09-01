@@ -1,6 +1,7 @@
 # How to install postgresql on Nvidia Jetson devices, Ex: Jetson orin NX 16g with Ubuntu 22.04
 ```
 sudo apt install postgresql
+sudo apt install postgresql-server-dev-14
 ```
 # Check postgres version
 ```
@@ -48,10 +49,33 @@ sudo systemctl restart postgresql
 sudo systemctl postgresql status
 ```
 # Connect to server
-## 1. Open your pgAdmin application & add hit the "Add new server"
-## 2. Fill full the Name area, you can set any string that you want
-## 3. switch to connection sheet & fill full "Host name/Address" and "username" & "password"
-## 4. Hit save button, it will auto connect to remote server.
+1. Open your pgAdmin application & add hit the "Add new server"
+2. Fill full the Name area, you can set any string that you want
+3. switch to connection sheet & fill full "Host name/Address" and "username" & "password"
+4. Hit save button, it will auto connect to remote server.
+# Refer
+- https://blog.csdn.net/2301_79325768/article/details/147894245
+---
+# Install the pgVector
+```
+cd /tmp
+git clone --branch v0.8.0 https://github.com/pgvector/pgvector.git
+cd pgvector
+make
+sudo make install
+```
+# Enable the extension(do this once in each database where you want to use it)
+```
+sudo -u postgres psql
+postgres=# CREATE EXTENSION vector;
+CREATE EXTENSION
+postgres=# \q
+```
+# Refer
+```
+https://github.com/pgvector/pgvector
+```
+
 
 
 
