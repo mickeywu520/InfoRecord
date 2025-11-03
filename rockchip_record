@@ -54,20 +54,121 @@ Color space                              : RGB
 Bit depth                                : 8 bits
 =================================================================================
 
-============== Rockchip RK3399 - Mali-T860 GPU驱动 ==============
+# ============== Rockchip RK3399 - Mali-T860 GPU驱动 ==============
 https://blog.csdn.net/shiner_chen/article/details/135757902
 https://dev.t-firefly.com/thread-100733-1-1.html
-
+---
 # Rockchip FTP 
- - [ ftp://www.rockchip.com.cn ]
- - 賬號名：rkwifi
- - 密碼：Cng9280H8t
-=================================================================================
-## PX-30和RK3399
-ID: arborbu5
-PWD : arborbu5
-=================================================================================
-## RK3288 帳號密碼
-帳戶名稱: Arbor
-密碼: Arbor_RK3288
-=================================================================================
+- [ ftp://www.rockchip.com.cn ]
+- 賬號名：rkwifi
+- 密碼：Cng9280H8t
+## =================================================================================
+# PX-30和RK3399
+- ID: arborbu5
+- PWD : arborbu5
+## =================================================================================
+# RK3288 帳號密碼
+- 帳戶名稱: Arbor
+- 密碼: Arbor_RK3288
+## =================================================================================
+---
+# Rockchip wifiap(hotspot) settings preference.
+- https://www.cnblogs.com/crushgirl/p/13955261.html
+```
+diff --git a/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiServiceImpl.java b/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiServiceImpl.java
+index 0f3e901..060563c 100644
+--- a/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiServiceImpl.java
++++ b/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiServiceImpl.java
+@@ -408,14 +408,21 @@ public class WifiServiceImpl extends IWifiManager.Stub {
+  
+    public void checkAndStartWifi() {
+         /* Check if wi-fi needs to be enabled */
+         .....
+         .....
+         .....
+         // Adding optimizations of only receiving broadcasts when wifi is enabled
+         // can result in race conditions when apps toggle wifi in the background
+         // without active user involvement. Always receive broadcasts.
+         registerForBroadcasts();
+         registerForPackageOrUserRemoval();
+         mInIdleMode = mPowerManager.isDeviceIdleMode();
+ 
+         mWifiController.start();
+         
++        int wifiap_on = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.WIFIAP_ON, 0);
++        if(wifiap_on == 1) {
++            setWifiApEnabled(getWifiApConfiguration(),true);
++        } else if (wifiEnabled){
++            setWifiEnabled(wifiEnabled);
++        }
+     }
+ 
+    public void setWifiApEnabled(WifiConfiguration wifiConfig, boolean enabled) {
+        enforceChangePermission();
+        ConnectivityManager.enforceTetherChangePermission(mContext);
+        if (mUserManager.hasUserRestriction(UserManager.DISALLOW_CONFIG_TETHERING)) {
+            throw new SecurityException("DISALLOW_CONFIG_TETHERING is enabled for this user.");
+        }
+        // null wifiConfig is a meaningful input for CMD_SET_AP
+        if (wifiConfig == null || isValid(wifiConfig)) {
++           Settings.Global.putInt(mContext.getContentResolver(), Settings.Global.WIFIAP_ON, enabled ? 1 : 0);
+            mWifiController.obtainMessage(CMD_SET_AP, enabled ? 1 : 0, 0, wifiConfig).sendToTarget();
+        } else {
+            Slog.e(TAG, "Invalid WifiConfiguration");
+        }
+    }
+ 
+diff --git a/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java b/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java
+index 20b95b9..545af52 100644
+--- a/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java
++++ b/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java
+@@ -2581,6 +2581,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
+        private void loadGlobalSettings(SQLiteDatabase db) {
+             ......
+             ......
+             loadBooleanSetting(stmt, Settings.Global.AIRPLANE_MODE_ON,
+                     R.bool.def_airplane_mode_on);
+  
++            loadBooleanSetting(stmt, Settings.Global.WIFIAP_ON,
++                    R.bool.def_wifiap_on);
++
+             loadBooleanSetting(stmt, Settings.Global.THEATER_MODE_ON,
+                     R.bool.def_theater_mode_on);
+ 
+diff --git a/frameworks/base/packages/SettingsProvider/res/values/defaults.xml b/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+index a2e0012..3cc42eb 100644
+--- a/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
++++ b/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+@@ -7,4 +7,7 @@
++    <!--if true while boot_completed will start wifiap on  -->
++    <bool name="def_wifiap_on">true</bool>
+ 
+ 
+ 
+diff --git a/frameworks/base/core/java/android/provider/Settings.java b/frameworks/base/core/java/android/provider/Settings.java
+index d8e8e45..82a50f3 100755
+--- a/frameworks/base/core/java/android/provider/Settings.java
++++ b/frameworks/base/core/java/android/provider/Settings.java
+@@ -4249,7 +4249,7 @@ public final class Settings {
+             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_ON);
+             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_P2P_DEVICE_NAME);
+             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SAVED_STATE);
++            MOVED_TO_GLOBAL.add(Settings.Global.WIFIAP_ON);
+             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUPPLICANT_SCAN_INTERVAL_MS);
+             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUSPEND_OPTIMIZATIONS_ENABLED);
+             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_VERBOSE_LOGGING_ENABLED);
+@@ -7764,7 +7764,7 @@ public final class Settings {
+       /**
+        * Settings to allow BLE scans to be enabled even when Bluetooth is turned off for
+        * connectivity.
+        * @hide
+        */
+       public static final String BLE_SCAN_ALWAYS_AVAILABLE =
+               "ble_scan_always_enabled";
+ 
++        /**
++         * Used to save the WifiAP_ON State
++         * @hide
++        */
++       public static final String WIFIAP_ON = "wifiap_on";
+```
