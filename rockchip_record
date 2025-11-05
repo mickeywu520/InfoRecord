@@ -172,3 +172,31 @@ index d8e8e45..82a50f3 100755
 +        */
 +       public static final String WIFIAP_ON = "wifiap_on";
 ```
+# the wifi hotspot enable, need to take care the wifi must be disabled before hotspot enable, such as below code(example)
+```
+// mickey, hotspot test
+else if (action.equals("com.device.settings.wifiap.on")) {
+    // NETWORK_STACK is a signature only permission.
+		enforceNetworkStackPermission();
+		mLog.info("startSoftAp uid=%").c(Binder.getCallingUid()).flush(); 
+		// Check if wi-fi needs to be enabled
+		boolean wifiEnabled = mSettingsStore.isWifiToggleEnabled();
+		Slog.d(TAG, "WifiService starting up with Wi-Fi " + (wifiEnabled ? "enabled" : "disabled"));
+		int wifiap_on = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.WIFIAP_ON, 0);
+		if (wifiap_on == 1) {
+		    try {
+			    setWifiEnabled(mContext.getPackageName(), false);
+		    } catch (RemoteException e) {
+			    Slog.e(TAG, "Error disabling Wi-Fi before enabling AP", e);
+		    }
+		
+		    mHandler.postDelayed(() -> {
+  			  try {
+  			    setWifiApEnabled(getWifiApConfiguration(),true);
+  			  } catch (Exception e) {
+  			    Slog.e(TAG, "Delayed setWifiApEnabled failed", e);
+  			  }
+		    }, 3000);
+		}
+}
+```
