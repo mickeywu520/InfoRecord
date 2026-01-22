@@ -9,13 +9,15 @@ aarch64-linux-gnu-gcc CCTalkPortTest.cpp CCTalkPortTest.h -o CCTalkPortTest.out
 
 
 
-======== make a so shared lib (iot800n ubuntu libIgnState.so) ========
-
+# ======== make a so shared lib (iot800n ubuntu libIgnState.so) ========
+```
 sudo gcc -shared -fPIC -o libIgnState.so ignState.c ignState.h
 sudo cp libIgnState.so /usr/local/lib/
 sudo ldconfig
+```
 
-======== ignState.c ========
+## ======== ignState.c ========
+```
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -49,7 +51,10 @@ long get_voltage_raw() {
     //return atoi(buf);
     return parse_ign_vol(buf);
 }
-======== ignState.h ========
+```
+
+## ======== ignState.h ========
+```
 #ifndef IGNSTATE_H
 #define IGNSTATE_H
 
@@ -70,9 +75,10 @@ int main() {
     printf("get Voltage raw from test app: %d\n", voltage);
     return 0;
 }
+```
 
-
-================ watchdog ================
+## ================ watchdog ================
+```
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -119,11 +125,20 @@ int main(void)
     close(fd);
     return ret;
 }
-
+```
 
 # if windows cannot WinSCP or ssh to linux system, please check if openssh-server has been install or not
 sudo apt-get install openssh-server
 
+# USB test
+- lsusb -t
+- fio
+```
+sudo apt install fio
+# READ（1M）：
+fio --filename=/dev/sda --ioengine=libaio --direct=1 --rw=read --bs=1m --numjobs=4 --iodepth=32 --runtime=60 --time_based --thread --norandommap --group_reporting --name=fiotest
 
-
-
+# WRITE（1M）：
+fio --filename=/dev/sda --ioengine=libaio --direct=1 --rw=write --bs=1m --numjobs=4 --iodepth=32 --runtime=60 --time_based --thread --norandommap --group_reporting --name=fiotest
+```
+- Ref: https://blog.csdn.net/weixin_63030235/article/details/147628913?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7Ebaidujs_baidulandingword%7ECtr-2-147628913-blog-121434080.235%5Ev43%5Epc_blog_bottom_relevance_base6&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7Ebaidujs_baidulandingword%7ECtr-2-147628913-blog-121434080.235%5Ev43%5Epc_blog_bottom_relevance_base6&utm_relevant_index=5
