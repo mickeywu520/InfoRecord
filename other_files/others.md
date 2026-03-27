@@ -295,3 +295,10 @@ inet_interfaces = all
 inet_protocols = ipv4
 ```
 ---
+# Windows 11 25H2 建立本機帳號
+在「請我們將您連線到網路」畫面時，按 Shift + F10 組合鍵，開啟命令提示字元視窗。輸入 
+```
+start ms-cxh:localonly
+```
+---
+
