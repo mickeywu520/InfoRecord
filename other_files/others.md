@@ -309,5 +309,22 @@ start ms-cxh:localonly
 DNS:0.018018s Connect:0.223967s TTFB:1.143879s Total:1.143961s
 (myvenv) PS C:\Users\mickey\Desktop\python\rtsp>
 ```
+- 測試網頁
+1. Oracle OCI(VPS)
+```
+https://cloudpingtest.com/oracle
+```
+2. GCP(VPS)
+```
+https://www.gcping.com/
+```
+3. Vultr(VPS)
+```
+https://sgp-ping.vultr.com/
+```
+4. AWS(VPS)
+```
+https://aws-latency-test.com/
+```
 ---
 
