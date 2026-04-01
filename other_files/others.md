@@ -301,4 +301,13 @@ inet_protocols = ipv4
 start ms-cxh:localonly
 ```
 ---
+# 測試延遲
+- In windows powershell
+```
+(myvenv) PS C:\Users\mickey\Desktop\python\rtsp> curl.exe -o NUL -s -w "DNS:%{time_namelookup}s Connect:%{time_connect}s TTFB:%{time_starttransfer}s Total:%{time_total}s`n" `
+>> https://mickeywu520-inventory-fastapi.hf.space/
+DNS:0.018018s Connect:0.223967s TTFB:1.143879s Total:1.143961s
+(myvenv) PS C:\Users\mickey\Desktop\python\rtsp>
+```
+---
 
