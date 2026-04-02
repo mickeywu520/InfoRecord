@@ -169,7 +169,8 @@ https://support.broadcom.com/group/ecx/downloads
 After fdisk new partition, don't forget to resise2fs the new partition to marge the /dev/root
 Ex: resize2fs /dev/mmcblk0p2
 ---
-# [x86 ubuntu 22.04 install rtx3070] 
+# [x86 ubuntu 22.04 install rtx3070]
+```
 sudo apt update
 sudo apt install ubuntu-drivers-common
 sudo ubuntu-drivers devices
@@ -193,7 +194,9 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
 sudo apt install nvidia-driver-550-open
 sudo reboot
 sudo nvidia-smi
-Ex:
+```
+- Ex:
+```
 $ nvidia-smi
 Thu Feb 13 10:54:15 2025       
 +-----------------------------------------------------------------------------------------+
@@ -216,7 +219,8 @@ Thu Feb 13 10:54:15 2025
 |    0   N/A  N/A      1233      G   /usr/lib/xorg/Xorg                             82MiB |
 |    0   N/A  N/A      1566      G   /usr/bin/gnome-shell                           75MiB |
 +-----------------------------------------------------------------------------------------+
-
+```
+```
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
@@ -230,22 +234,30 @@ export LD_LIBRARY_PATH=/usr/local/cuda-12.6/lib64\
 
 . ~/.bashrc
 nvcc -V
-
-refer:
+```
+## refer:
+```
 https://www.cherryservers.com/blog/install-cuda-ubuntu
+```
 ---
 # Markdown translator
-# Free-Markdown-Translator
+- Free-Markdown-Translator
+```
 https://github.com/CrazyMayfly/Free-Markdown-Translator
+```
 ---
-# ================ C# 軟體Licence應用實例 ================
-# https://blog.csdn.net/fengershishe/article/details/132653311
+# C# 軟體Licence應用實例
+```
+https://blog.csdn.net/fengershishe/article/details/132653311
+```
 ---
-# ================ Speech VLM ================
-# https://wiki.seeedstudio.com/cn/speech_vlm/
-# https://github.com/ZhuYaoHui1998/speech_vlm
+# Speech VLM
+```
+https://wiki.seeedstudio.com/cn/speech_vlm/
+https://github.com/ZhuYaoHui1998/speech_vlm
+```
 ---
-# ================ Postfix ================
+# Postfix 
 ## Install postfix
 ```
 sudo apt install postfix
