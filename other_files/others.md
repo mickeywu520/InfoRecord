@@ -96,9 +96,11 @@ curl -X 'POST' 'http://localhost:3090/api/hello2?name=aaaaaaaaaaaaa' -H 'accept:
 ```
 ---
 # OSCP备忘单示例 Example Cheat Sheet
-- https://www.ddosi.org/oscp-cheat-sheet-2/
+```
+https://www.ddosi.org/oscp-cheat-sheet-2/
+```
 ---
-# ================ Wake Your Linux PC From Suspend With a USB Mouse or Keyboard ================
+# Wake Your Linux PC From Suspend With a USB Mouse or Keyboard
 - 1. find out your USB "device ID"
   Ex: $ lsusb
   show: Bus 001 Device 006: ID 0000:3825 USB OPTICAL MOUSE
@@ -114,30 +116,43 @@ curl -X 'POST' 'http://localhost:3090/api/hello2?name=aaaaaaaaaaaaa' -H 'accept:
 ## Refer
 https://www.makeuseof.com/wake-your-linux-pc-from-suspend-using-usb-devices/
 ---
-# ================ [经验] RK3399 Android支持wifi/4G与以太网共存的解决过程和方法 ================
+# [經驗] RK3399 Android支援wifi/4G與乙太網路共存的解決過程與方法
+```
 https://bbs.elecfans.com/jishu_2280127_1_1.html
+```
 ---
-# ================ Jenkins-Android源码编译【架构设计】（适用鸿蒙/自动化/多产品/持续迭代）================
+# Jenkins-Android原始碼編譯【架構設計】（適用鴻蒙/自動化/多產品/持續迭代）
+```
 https://blog.csdn.net/dengtonglong/article/details/136512728
+```
 ---
-# ================ Anydesk cannot unlock security(ubuntu 22.04) ================
+# Anydesk cannot unlock security(ubuntu 22.04) 
+```
 sudo vi /etc/gdm3/custom.conf
-[daemon]
-Uncomment the line below to force the login screen to use Xorg
+```
+- [daemon] Uncomment the line below to force the login screen to use Xorg
+```
 WaylandEnable=false
+```
 ---
-# ================ RK356x & RK3399 Android 12 GMS ================
+# RK356x & RK3399 Android 12 GMS
+```
 https://blog.csdn.net/qq_46524402/article/details/132018105
+```
 ---
-# ================ 2016 ================
+# 2016
+```
 T9NBK-Q6DM2-RJHDQ-RKFVJ-VH7B2
+```
 ---
-# ================ 356x SDK ================
+# 356x SDK
+```
 FTP address: ftp://ftp.rock-chips.com	
 Connection type: Ftp
 Port number: 998
 FTP account: arborbu5
 FTP password: c867e9cd
+```
 ---
 # Virtual box 7.0 cannot open terminal
  - changed the line of /etc/default/locale file to LANG=en_US.UTF-8 and rebooted.
@@ -154,8 +169,7 @@ https://support.broadcom.com/group/ecx/downloads
 After fdisk new partition, don't forget to resise2fs the new partition to marge the /dev/root
 Ex: resize2fs /dev/mmcblk0p2
 ---
-================ x86 ubuntu 22.04 install rtx3070] ================
-# 
+# [x86 ubuntu 22.04 install rtx3070] 
 sudo apt update
 sudo apt install ubuntu-drivers-common
 sudo ubuntu-drivers devices
@@ -220,7 +234,7 @@ nvcc -V
 refer:
 https://www.cherryservers.com/blog/install-cuda-ubuntu
 ---
-================ Markdown translator ================
+# Markdown translator
 # Free-Markdown-Translator
 https://github.com/CrazyMayfly/Free-Markdown-Translator
 ---
@@ -325,6 +339,10 @@ https://sgp-ping.vultr.com/
 4. AWS(VPS)
 ```
 https://aws-latency-test.com/
+```
+5. Azure(VPS)
+```
+https://www.azurespeed.com/Azure/Latency
 ```
 ---
 
