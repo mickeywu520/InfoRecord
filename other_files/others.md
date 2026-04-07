@@ -357,4 +357,68 @@ https://aws-latency-test.com/
 https://www.azurespeed.com/Azure/Latency
 ```
 ---
+# llama.cpp
+
+- if encounter the error: No CMAKE_CXX_COMPILER could be found.
+Check the gcc & g++ version, and both must be the same version.
+```
+gcc --version
+g++ --version
+```
+- adjust the g++ version
+```
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
+sudo update-alternatives --config g++
+```
+- fixed error "update-alternatives: error: alternative g++ can't be master: it is a slave of gcc"
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 \
+                         --slave /usr/bin/g++ g++ /usr/bin/g++-12
+```
+- build llama.cpp
+```
+git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+cmake -B build
+cmake --build build --config Release -j 8
+```
+- Download the gguf model via unsloth on huggingface
+Ex:
+```
+https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF
+```
+- launch llama.cpp with CPU only
+```
+numactl --interleave=all \
+./build/bin/llama-server \
+  --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
+  --alias gemma-4-E4B \
+  --ctx-size 32768 \
+  --threads 36 \
+  --batch-size 512 \
+  --host 0.0.0.0 \
+  --port 8080 \
+  --mlock \
+  --jinja
+```
+Error Msg:
+```
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
+update-alternatives: error: alternative g++ can't be master: it is a slave of gcc
+```
+Error Msg:
+```
+cmake -B build
+-- The CXX compiler identification is unknown
+CMake Error at CMakeLists.txt:2 (project):
+  No CMAKE_CXX_COMPILER could be found.
+
+  Tell CMake where to find the compiler by setting either the environment
+  variable "CXX" or the CMake cache entry CMAKE_CXX_COMPILER to the full path
+  to the compiler, or to the compiler name if it is in the PATH.
+
+
+-- Configuring incomplete, errors occurred!
+```
+---
 
