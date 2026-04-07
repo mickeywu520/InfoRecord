@@ -389,24 +389,97 @@ https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF
 ```
 - launch llama.cpp with CPU only
 ```
-numactl --interleave=all \
 ./build/bin/llama-server \
   --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
   --alias gemma-4-E4B \
-  --ctx-size 32768 \
-  --threads 36 \
+  --ctx-size 8192 \
+  --threads 20 \
   --batch-size 512 \
+  --cache-type-k q8_0 \
+  --cache-type-v q8_0 \
   --host 0.0.0.0 \
   --port 8080 \
   --mlock \
   --jinja
 ```
-Error Msg:
+- update server settings
+```
+# 1. 設定 CPU 為效能模式（重開機後失效，建議寫入 /etc/rc.local 或 systemd service）
+sudo cpupower frequency-set -g performance
+
+# 2. 關閉透明大頁面的非同步回收（可減少記憶體碎片與延遲）
+echo madvise | sudo tee /sys/kernel/mm/transparent_hugepage/enabled
+
+# 3. 確認記憶體通道是否插滿（關鍵！）
+sudo dmidecode -t memory | grep -E "Size|Configured Clock Speed|Locator" | head -20
+```
+- update llama.cpp & build
+```
+# 1. 拉取最新版（包含 NUMA、KV量化、CPU 推論優化）
+git pull origin master
+
+# 2. 徹底清除舊編譯檔（關鍵！）
+rm -rf build
+
+# 3. 重新設定編譯（啟用 AVX2/FMA 與 Flash Attention 支援）
+cmake -B build \
+  -DLLAMA_AVX2=ON \
+  -DLLAMA_F16C=ON \
+  -DLLAMA_FMA=ON \
+  -DLLAMA_AVX=ON \
+  -DLLAMA_FLASH_ATTN=ON \
+  -DCMAKE_BUILD_TYPE=Release
+
+# 4. 編譯
+cmake --build build -j$(nproc) --config Release
+```
+- update llama-server launch command
+```
+./build/bin/llama-server \
+  --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
+  --alias gemma-4-E4B \
+  --ctx-size 8192 \
+  --threads 20 \
+  --batch-size 512 \
+  --cache-type-k q8_0 \
+  --cache-type-v q8_0 \
+  --numa isolate \
+  --host 0.0.0.0 \
+  --port 8080 \
+  --mlock \
+  --jinja
+
+Or
+
+MALLOC_ARENA_MAX=1 numactl --cpunodebind=0 --membind=0 ./build/bin/llama-server \
+  --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
+  --alias gemma-4-E4B \
+  --ctx-size 8192 \
+  --threads 20 \
+  --batch-size 512 \
+  --cache-type-k q8_0 \
+  --cache-type-v q8_0 \
+  --numa isolate \
+  --host 0.0.0.0 \
+  --port 8080 \
+  --mlock \
+  --jinja
+```
+- 紀錄
+```
+--cpunodebind=0 / 僅允許程序在 Node 0 (Socket 0) 的 20 個邏輯核心上排程
+--membind=0 / 強制所有 malloc/mmap 僅從 Node 0 的記憶體分配
+--threads 20 / 必須匹配 Node 0 的邏輯核心數。若設 40，多出的 20 執行緒會因節點限制產生排程衝突與 Context Switch 罰款
+--numa isolate + 雙節點記憶體 / 6.5 ~ 8.5 t/s / 跨節點存取拖累頻寬
+numactl --membind=0 + --threads 20 / 9.5 ~ 12.5 t/s / ✅ 推薦，記憶體頻寬集中，無 QPI 延遲
+--numa distribute + --threads 40 / 8.0 ~ 10.0 t/s / 適合模型 > 單節點 RAM 容量時
+```
+- Error Msg:
 ```
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
 update-alternatives: error: alternative g++ can't be master: it is a slave of gcc
 ```
-Error Msg:
+- Error Msg:
 ```
 cmake -B build
 -- The CXX compiler identification is unknown
