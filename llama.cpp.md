@@ -48,9 +48,10 @@ cd build/bin
   --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
   --alias gemma-4-E4B \
   --ctx-size 32768 \
-  --batch-size 256 \
+  --batch-size 512 \
   --n-gpu-layers 999 \
   --parallel 1 \
+  --flash-attn 1 \
   --cache-type-k q4_0 \
   --cache-type-v q4_0 \
   --host 0.0.0.0 \
