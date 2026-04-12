@@ -430,6 +430,18 @@ cmake -B build \
   -DLLAMA_FLASH_ATTN=ON \
   -DCMAKE_BUILD_TYPE=Release
 
+# 3.1 Added CUDA and RPC
+```
+cmake -B build \
+  -DLLAMA_AVX2=ON \
+  -DLLAMA_F16C=ON \
+  -DLLAMA_FMA=ON \
+  -DLLAMA_AVX=ON \
+  -DLLAMA_FLASH_ATTN=ON \
+  -DGGML_CUDA=ON \
+  -DGGML_RPC=ON \
+  -DCMAKE_BUILD_TYPE=Release
+```
 # 4. 編譯
 cmake --build build -j$(nproc) --config Release
 ```
@@ -464,6 +476,22 @@ MALLOC_ARENA_MAX=1 numactl --cpunodebind=0 --membind=0 ./build/bin/llama-server 
   --port 8080 \
   --mlock \
   --jinja
+
+Or with CUDA
+
+ ./build/bin/llama-server \
+  --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
+  --alias gemma-4-E4B \
+  --ctx-size 32768 \
+  --batch-size 256 \
+  --n-gpu-layers 999 \
+  --parallel 1 \
+  --cache-type-k q4_0 \
+  --cache-type-v q4_0 \
+  --host 0.0.0.0 \
+  --port 8080 \
+  --jinja \
+  --verbose
 ```
 - 紀錄
 ```
