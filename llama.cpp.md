@@ -41,6 +41,23 @@ cd build/bin
 ```
 ./llama-server -m "model.gguf" -ngl 25 --host 0.0.0.0
 ```
+## Test on Jetson orin NX 16g hardware
+- tok/s about 12
+```
+ ./build/bin/llama-server \
+  --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
+  --alias gemma-4-E4B \
+  --ctx-size 32768 \
+  --batch-size 256 \
+  --n-gpu-layers 999 \
+  --parallel 1 \
+  --cache-type-k q4_0 \
+  --cache-type-v q4_0 \
+  --host 0.0.0.0 \
+  --port 8080 \
+  --jinja \
+  --verbose
+```
 ## RPC server, 需要編譯支援RPC的執行檔
 ```
 mkdir build-rpc-cuda
