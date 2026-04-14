@@ -430,19 +430,17 @@ cmake -B build \
   -DLLAMA_FLASH_ATTN=ON \
   -DCMAKE_BUILD_TYPE=Release
 
-# 3.1 Added CUDA and RPC
-```
+# 3.1 Added CUDA and RPC on Jetson orin series
 cmake -B build \
-  -DLLAMA_AVX2=ON \
-  -DLLAMA_F16C=ON \
-  -DLLAMA_FMA=ON \
-  -DLLAMA_AVX=ON \
-  -DLLAMA_FLASH_ATTN=ON \
   -DGGML_CUDA=ON \
+  -DCMAKE_CUDA_ARCHITECTURES=87 \
+  -DLLAMA_FLASH_ATTN=ON \
+  -DGGML_CUDA_F16=ON \
   -DGGML_RPC=ON \
   -DCMAKE_BUILD_TYPE=Release
 ```
 # 4. 編譯
+```
 cmake --build build -j$(nproc) --config Release
 ```
 - update llama-server launch command
