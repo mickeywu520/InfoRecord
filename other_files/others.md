@@ -476,20 +476,29 @@ MALLOC_ARENA_MAX=1 numactl --cpunodebind=0 --membind=0 ./build/bin/llama-server 
   --jinja
 
 Or with CUDA
+# llama.cpp tag: b8994
 
- ./build/bin/llama-server \
+./build/bin/llama-server \
   --model ../models/gemma-4-E4B-it-Q4_K_M.gguf \
   --alias gemma-4-E4B \
   --ctx-size 32768 \
-  --batch-size 256 \
+  --batch-size 1024 \
+  --ubatch-size 256 \
+  --threads 8 \
+  --cpu-moe \
+  --spec-type ngram-simple \
+  --spec-ngram-simple-size-n 8 \
+  --spec-ngram-simple-size-m 8 \
+  --spec-ngram-simple-min-hits 2 \
+  --flash-attn on \
+  --mlock \
   --n-gpu-layers 999 \
-  --parallel 1 \
-  --cache-type-k q4_0 \
-  --cache-type-v q4_0 \
+  --cache-type-k f16 \
+  --cache-type-v f16 \
   --host 0.0.0.0 \
   --port 8080 \
-  --jinja \
-  --verbose
+  --jinja
+
 ```
 - 紀錄
 ```
