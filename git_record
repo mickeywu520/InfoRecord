@@ -113,9 +113,26 @@ git push -f origin master
 if show below error, please unprotect the project -> "Repository Settings" ->  "Protected Branches" -> unprotect
  ! [remote rejected]     master -> master (pre-receive hook declined)
 
-
-
-
+# 移除換行出現^M符號方法
+- 檢查哪些檔案真的含 CRLF
+```
+git diff --name-only --diff-filter=M | while read f; do
+    if grep -Iq . "$f" && grep -q $'\r$' "$f"; then
+        echo "[CRLF] $f"
+    fi
+done
+```
+- 只處理 git status 中已 modified 的檔案, 排除 .git且不掃整個 project, 也不碰 deleted 檔案, 只移除行尾 \r
+```
+git diff --name-only --diff-filter=M | while read f; do
+    [ -f "$f" ] && sed -i 's/\r$//' "$f"
+done
+```
+- 確認修復狀態
+```
+git diff --check
+git status
+```
 
 
 
