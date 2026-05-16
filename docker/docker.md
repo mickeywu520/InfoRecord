@@ -2,6 +2,12 @@
 ```
 sudo apt-get update && apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
+## add user to docker group, don't need type sudo
+```
+sudo systemctl restart docker
+sudo usermod -aG docker $USER
+newgrp docker
+```
 ## Make a Dockerfile
 ```
 touch Dockerfile
