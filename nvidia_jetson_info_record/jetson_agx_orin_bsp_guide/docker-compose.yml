@@ -1,0 +1,54 @@
+# =============================================================================
+# Jetson AGX Orin BSP 編譯環境 - Docker Compose 設定 (Rootfs 支援版)
+# 版本: R36.5.0 (JetPack 6.2.2)
+# =============================================================================
+
+version: '3.8'
+
+services:
+  jetson-bsp-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1001}
+        GROUP_ID: ${GROUP_ID:-1001}
+    
+    container_name: jetson-bsp-r36-5-builder
+    
+    privileged: true
+    network_mode: host
+    
+    # 🔑 修改 1：強制容器程序以 Host 的 UID:GID 執行
+    # Docker 會直接將此 ID 映射到掛載的卷，新生成的檔案將直接屬於 Host 帳號
+    user: "${USER_ID:-1001}:${GROUP_ID:-1001}"
+    
+    # 🔑 修改 2：明確指定 HOME 目錄
+    # 當使用自訂 UID 執行時，bash 可能讀不到正確家目錄。此設定確保 .bashrc 與環境變數正常載入
+    environment:
+      - USER=jetson-dev
+      - HOME=/home/jetson-dev
+      - BSP_PATH=Linux_for_Tegra
+      - USER_ID=${USER_ID:-1001}
+      - GROUP_ID=${GROUP_ID:-1001}
+      - INSTALL_MOD_PATH=/home/jetson-dev/workspace/Linux_for_Tegra/rootfs
+      - KERNEL_HEADERS=/home/jetson-dev/workspace/Linux_for_Tegra/source/kernel/kernel-jammy-src
+      
+    devices:
+      - "/dev/bus/usb:/dev/bus/usb"  # 🔑 允許容器存取所有 USB 裝置
+    
+    volumes:
+      # 1. 工作目錄
+      - ./workspace:/home/jetson-dev/workspace:rw
+      # 2. Toolchain
+      - ./toolchain:/home/jetson-dev/l4t-gcc/aarch64--glibc--stable-2022.08-1:rw
+      # 3. 支援 mount 操作的 /tmp
+      - /tmp:/tmp:rw,rshared
+      # 4. 確保 udev 規則可觸發
+      - /run/udev/control:/run/udev/control:ro
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev:/dev                
+    
+    stdin_open: true
+    tty: true
+    command: /bin/bash -l
