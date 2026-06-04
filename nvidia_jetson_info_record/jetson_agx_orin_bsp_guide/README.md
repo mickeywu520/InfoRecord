@@ -250,16 +250,38 @@ RELEASE_TAG="jetson_36.5"
 
 ### 目錄結構
 
+解壓 BSP 與 Toolchain 後，專案目錄結構如下：
+
 ```
-project/
-├── Dockerfile
+.
 ├── docker-compose.yml
-├── workspace/          # 放置 Linux_for_Tegra/
-└── toolchain/          # 解壓 Bootlin Toolchain 至此
+├── Dockerfile
+├── toolchain                        # aarch64--glibc--stable-2022.08-1.tar.bz2 解壓縮至此
+│   ├── aarch64-buildroot-linux-gnu
+│   ├── bin
+│   ├── etc
+│   ├── include
+│   ├── lib
+│   ├── lib64 -> lib
+│   ├── libexec
+│   ├── relocate-sdk.sh
+│   ├── share
+│   └── usr -> .
+└── workspace
+    ├── build.sh
+    └── Linux_for_Tegra               # Jetson_Linux_r36.5.0_aarch64.tbz2 解壓縮至此
 ```
 
-> **注意**：`toolchain/` 目錄對應容器內的 `~/l4t-gcc/aarch64--glibc--stable-2022.08-1`，
-> 請確認 Toolchain 解壓後的子目錄名稱與此一致。
+**解壓指令：**
+
+```bash
+# BSP（解壓後會產生 Linux_for_Tegra/ 目錄）
+tar -jxpf Jetson_Linux_r36.5.0_aarch64.tbz2 -C ./workspace/
+
+# Toolchain（解壓後將內容移至 toolchain/ 目錄）
+mkdir -p ./toolchain
+tar -jxpf aarch64--glibc--stable-2022.08-1.tar.bz2 --strip-components=1 -C ./toolchain/
+```
 
 ### Dockerfile
 
