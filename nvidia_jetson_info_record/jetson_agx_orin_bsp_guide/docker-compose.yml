@@ -13,18 +13,15 @@ services:
       args:
         USER_ID: ${USER_ID:-1001}
         GROUP_ID: ${GROUP_ID:-1001}
-    
+
     container_name: jetson-bsp-r36-5-builder
-    
+
     privileged: true
     network_mode: host
-    
-    # 🔑 修改 1：強制容器程序以 Host 的 UID:GID 執行
-    # Docker 會直接將此 ID 映射到掛載的卷，新生成的檔案將直接屬於 Host 帳號
+
+    # 以 Host UID:GID 執行，掛載目錄的新生成檔案直接屬於 Host 帳號
     user: "${USER_ID:-1001}:${GROUP_ID:-1001}"
-    
-    # 🔑 修改 2：明確指定 HOME 目錄
-    # 當使用自訂 UID 執行時，bash 可能讀不到正確家目錄。此設定確保 .bashrc 與環境變數正常載入
+
     environment:
       - USER=jetson-dev
       - HOME=/home/jetson-dev
@@ -33,22 +30,48 @@ services:
       - GROUP_ID=${GROUP_ID:-1001}
       - INSTALL_MOD_PATH=/home/jetson-dev/workspace/Linux_for_Tegra/rootfs
       - KERNEL_HEADERS=/home/jetson-dev/workspace/Linux_for_Tegra/source/kernel/kernel-jammy-src
-      
+
     devices:
-      - "/dev/bus/usb:/dev/bus/usb"  # 🔑 允許容器存取所有 USB 裝置
-    
+      - "/dev/bus/usb:/dev/bus/usb"
+
     volumes:
       # 1. 工作目錄
       - ./workspace:/home/jetson-dev/workspace:rw
+
       # 2. Toolchain
       - ./toolchain:/home/jetson-dev/l4t-gcc/aarch64--glibc--stable-2022.08-1:rw
+
       # 3. 支援 mount 操作的 /tmp
       - /tmp:/tmp:rw,rshared
-      # 4. 確保 udev 規則可觸發
+
+      # 4. udev 規則
       - /run/udev/control:/run/udev/control:ro
       - /dev/bus/usb:/dev/bus/usb
-      - /dev:/dev                
-    
+      - /dev:/dev
+
+      # -----------------------------------------------------------------------
+      # 5. [Flash 支援] NFS exports 設定檔
+      #    initrd flash script 會寫入 /etc/exports 並重啟 NFS daemon。
+      #    掛載 host 的 /etc/exports 讓容器內的修改直接反映到 host NFS，
+      #    避免容器內 exportfs 與 host rpcbind 各跑各的產生衝突。
+      # -----------------------------------------------------------------------
+      - /etc/exports:/etc/exports:rw
+
+      # -----------------------------------------------------------------------
+      # 6. [Flash 支援] 讓容器共用 host 的 rpcbind / NFS daemon socket
+      #    容器內不再自己啟動一套，直接使用 host 已在跑的那一個。
+      # -----------------------------------------------------------------------
+      - /run/rpcbind:/run/rpcbind:rw
+      - /var/lib/nfs:/var/lib/nfs:rw
+
+      # -----------------------------------------------------------------------
+      # 7. [Flash 支援] docker_host_network flag 檔案
+      #    flash script 偵測到在 docker 內執行時，會檢查此路徑是否存在。
+      #    存在則告知 script 使用 host network（--network host 已設定）。
+      #    用 tmpfs bind 的方式在容器啟動時自動建立該目錄。
+      # -----------------------------------------------------------------------
+      - /run/nvidia_initrd_flash:/run/nvidia_initrd_flash:rw
+
     stdin_open: true
     tty: true
     command: /bin/bash -l
