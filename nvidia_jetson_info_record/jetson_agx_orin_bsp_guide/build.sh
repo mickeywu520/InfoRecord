@@ -416,19 +416,55 @@ make_mfi() {
 
     cd "${L4T_PATH}" || die "無法進入 ${L4T_PATH}"
 
+    local IMAGES_DIR="./tools/kernel_flash/images"
+    local TARGET_IMG="${IMAGES_DIR}/external/system.img"
+    local APPEND_PARAM=""
+
+    # 智慧判斷與精準互動對話
+    if [ -f "${TARGET_IMG}" ]; then
+        log_warn "偵測到現存的 rootfs 鏡像檔 (${TARGET_IMG})。"
+        
+        # 互動對話：詢問用戶是否更新 rootfs
+        printf "\033[1;33m[QUESTION] 您剛剛是否有修改 rootfs 內容，需要重新打包 rootfs 嗎？(y/N): \033[0m"
+        read -r USER_CHOICE
+        
+        # 將輸入轉為小寫簡化判斷
+        USER_CHOICE=$(echo "${USER_CHOICE}" | tr '[:upper:]' '[:lower:]')
+        
+        if [ "${USER_CHOICE}" = "y" ] || [ "${USER_CHOICE}" = "yes" ]; then
+            log_info "正在清除舊有外部儲存鏡像 (保留 internal 暫存以加速)..."
+            sudo rm -f "${TARGET_IMG}"
+            log_info "已清理完成，將重新讀取 rootfs 資料夾並打包 system.img..."
+            # 必須保留 --append，讓腳本沿用 internal 暫存，僅重做缺失的 system.img
+            APPEND_PARAM="--append"
+        else
+            log_info "用戶選擇保留舊鏡像，將完全沿用上一次的 rootfs 內容..."
+            APPEND_PARAM="--append"
+        fi
+    else
+        log_info "未偵測到暫存鏡像，將進行全新完整打包（重新生成 QSPI 韌體與 rootfs 鏡像）..."
+        APPEND_PARAM=""
+    fi
+
     log_info "產生 MFI 線刷包 (此過程可能需要數分鐘)..."
+    
+    # 容錯處理：移除後方的 || die，改由下方統一檢查檔案是否存在
     sudo ./tools/kernel_flash/l4t_initrd_flash.sh --no-flash \
         --network usb0 --massflash "${MFI_MASSFLASH_NUM}" \
         -p "-c bootloader/generic/cfg/flash_t234_qspi.xml" \
         --external-device nvme0n1p1 \
         -c ./tools/kernel_flash/flash_l4t_t234_nvme.xml \
-        --append \
-        jetson-agx-orin-devkit external || die "MFI 線刷包製作失敗"
+        ${APPEND_PARAM} \
+        jetson-agx-orin-devkit external
 
-    # 檢查 MFI 檔案是否成功產生
+    # 檢查 MFI 檔案是否成功產生 (作為最終成功與否的依據，跳過非致命的 sed 清理錯誤)
     local MFI_FILE="${L4T_PATH}/mfi_jetson-agx-orin-devkit.tar.gz"
     if [ -f "${MFI_FILE}" ]; then
         log_ok "MFI 線刷包已成功產生: ${MFI_FILE}"
+        
+        # 調整壓縮包擁有者為當前執行用戶（方便後續解壓或搬移，避免全是 root 權限）
+        sudo chown "$(id -u):$(id -g)" "${MFI_FILE}" 2>/dev/null || true
+        
         local MFI_SIZE
         MFI_SIZE=$(du -h "${MFI_FILE}" | cut -f1)
         log_info "檔案大小: ${MFI_SIZE}"
@@ -441,7 +477,7 @@ make_mfi() {
         log_info ""
         log_warn "注意：將裝置置於 Recovery 模式後再執行燒錄"
     else
-        die "MFI 線刷包產生失敗，找不到 ${MFI_FILE}"
+        die "MFI 線刷包產生失敗，找不到 ${MFI_FILE}，請檢查上方有無其他嚴重錯誤。"
     fi
 
     log_ok "MFI 線刷包製作完成"
